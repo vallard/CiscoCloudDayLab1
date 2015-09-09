@@ -1,0 +1,6 @@
+---
+# file: infra.yml
+- hosts: ws
+  gather_facts: false
+  roles:
+    - labs

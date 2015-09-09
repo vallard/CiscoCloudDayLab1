@@ -1,0 +1,20 @@
+- name: Ensure lab servers are taken offline
+  connection: local
+  hosts: localhost
+  vars_files:
+   - vars/metacloud_vars.yml
+
+  tasks: 
+  - name: Ensure lab machines are down
+    os_server:
+      state: absent
+      name: "{{ item }}"
+      #image_name: "{{ coreos_image_name }}"
+      #key_name: "{{ keypair }}"
+      # 3 is m1.large
+      #flavor_id: 3
+      #meta: 
+      #  group: lab-machines
+      #security_groups: "{{ security_group }}"
+    with_items:
+      - lab01

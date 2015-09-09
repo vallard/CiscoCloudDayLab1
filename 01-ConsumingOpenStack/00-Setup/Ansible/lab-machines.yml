@@ -1,0 +1,40 @@
+- name: Ensure lab machines are up
+  connection: local
+  hosts: localhost
+  vars_files:
+   - vars/metacloud_vars.yml
+  tasks: 
+#  - name: ensure security group is setup
+#    os_security_group:
+#      state: present
+#      name: labsg
+#  - name: ensure security group rules are enabled on labsg
+#    os_security_group_rule:
+#      security_group: labsg
+#      protocol: tcp
+#      port_range_min: "{{item}}"
+#      port_range_max: "{{item}}"
+#      remote_ip_prefix: 0.0.0.0/0
+#    with_items:
+#      - 80
+#      - 22
+  - name: Ensure lab machines are up
+    os_server:
+      state: present
+      name: "{{ item }}"
+      key_name: "{{ keypair }}"
+      flavor: "{{ m1large }}"
+      security_groups: "{{ security_group }}"
+      userdata:  "{{ lookup('file', 'files/coreos-python.sh') }}"
+      image: "{{ coreos_image }}"
+#      floating_ip_pools:
+#        - "{{ floating_ip_pool }}"
+      meta: 
+        ansible: "lab-machines"  
+    with_items: 
+      - lab01
+
+#- name: Ensure Lab is setup
+#  hosts: lab-machines
+#  roles: 
+#    - lab

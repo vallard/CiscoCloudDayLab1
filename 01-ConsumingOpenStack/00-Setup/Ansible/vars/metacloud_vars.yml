@@ -1,0 +1,8 @@
+---
+keypair: gravy
+security_group: default
+coreos_image: CoreOS717
+m1large: 3
+#floating_ip_pool: "trial2-3003"
+floating_ip_pool: "demo1-1017"
+

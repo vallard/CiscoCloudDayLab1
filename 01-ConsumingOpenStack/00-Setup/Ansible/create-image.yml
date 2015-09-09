@@ -1,0 +1,16 @@
+- name: Upload and Image
+  connection: local
+  hosts: localhost
+  vars_files:
+   - vars/metacloud_vars.yml
+
+  tasks: 
+  - name: Ensure image is uploaded
+    os_image:
+      state: present
+      name: CoreOS723
+      container_format: bare
+      disk_format: qcow2
+      filename: cirros.img
+
+
