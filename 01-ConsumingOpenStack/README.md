@@ -4,6 +4,11 @@ This module will focus on using OpenStack APIs using various configuration
 tools.  When completed, the user will gain an understanding of how to 
 communicate with the OpenStack APIs in Metapod.  
 
+## Log into labs
+
+user01 - Aeph1tah
+
+
 ## Exercise - Build your Environment
 
 
