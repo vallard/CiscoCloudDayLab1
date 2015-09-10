@@ -31,3 +31,13 @@ chmod 755 $HOME/bin/pip
 
 # use 1.1.0 for the docker client to equal the same version of the server: 1.18 and not get bug. 
 sudo $HOME/bin/pip install -I docker-py==1.1.0
+
+# setup 
+mkdir -p /etc/systemd/system/
+cat > /etc/systemd/system/docker.service <<EOF
+[Service]
+Environment='DOCKER_OPTS=--insecure-registry=ci:5000 '
+EOF
+
+systemctl daemon-reload
+systemctl restart docker

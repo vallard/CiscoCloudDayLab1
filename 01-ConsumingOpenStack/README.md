@@ -6,11 +6,20 @@ communicate with the OpenStack APIs in Metapod.
 
 ## Log into labs
 
-user01 - Aeph1tah
+The instructor will have several IP addresses available for you to log
+into.
 
+You will also get a user ID assigned to you. 
+
+You will need to ssh into the lab client on port 2222.  
+
+On a MAC: 
+```
+ssh -p 2222 userXX@<IP ADDRESS> 
+```
+The password is Cisco.123
 
 ## Exercise - Build your Environment
-
 
 curl
 python

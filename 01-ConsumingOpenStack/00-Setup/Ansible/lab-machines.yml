@@ -33,8 +33,13 @@
         ansible: "lab-machines"  
     with_items: 
       - lab01
+    register: result
+       
+  - name: Wait for the post install script to finish
+    pause: minutes=1
+    when: result|changed
 
-#- name: Ensure Lab is setup
-#  hosts: lab-machines
-#  roles: 
-#    - lab
+- name: Ensure Lab is setup
+  hosts: lab-machines
+  roles: 
+    - lab
