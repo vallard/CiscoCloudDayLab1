@@ -1,3 +1,8 @@
 ---
 - name: Ensure Lab is Up. 
-  docker: image="vallard/metaclient" name=lab01 ports=2222
+  docker: 
+    image: "vallard/metaclient" 
+    name: lab01 
+    ports: 
+      - "2222:22"
+    command: /usr/sbin/sshd -D

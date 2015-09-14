@@ -24,6 +24,7 @@ $HOME/bin/python --version
 wget http://benincosa.com/get-pip.py
 sudo $HOME/bin/python ~/get-pip.py
 
+
 echo '#!/bin/bash
 LD_LIBRARY_PATH=/home/core/pypy/lib:$LD_LIBRARY_PATH /home/core/pypy/bin/$(basename $0) $@'>$HOME/bin/pip
 
@@ -32,12 +33,28 @@ chmod 755 $HOME/bin/pip
 # use 1.1.0 for the docker client to equal the same version of the server: 1.18 and not get bug. 
 sudo $HOME/bin/pip install -I docker-py==1.1.0
 
-# setup 
+# setup insecure registry
 mkdir -p /etc/systemd/system/
 cat > /etc/systemd/system/docker.service <<EOF
+[Unit]
+Description=Docker Application Container Engine
+Documentation=http://docs.docker.com
+After=docker.socket early-docker.target network.target
+Requires=docker.socket early-docker.target
+
 [Service]
-Environment='DOCKER_OPTS=--insecure-registry=ci:5000 '
+Environment=TMPDIR=/var/tmp
+EnvironmentFile=-/run/flannel_docker_opts.env
+MountFlags=slave
+LimitNOFILE=1048576
+LimitNPROC=1048576
+ExecStart=/usr/lib/coreos/dockerd --daemon --host=fd:// --insecure-registry ci:5000 $DOCKER_OPTS $DOCKER_OPT_BIP $DOCKER_OPT_MTU $DOCKER_OPT_IPMASQ
+
+[Install]
+WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
 systemctl restart docker
+
+

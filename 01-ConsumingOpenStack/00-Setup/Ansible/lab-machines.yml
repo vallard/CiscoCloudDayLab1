@@ -27,19 +27,24 @@
       security_groups: "{{ security_group }}"
       userdata:  "{{ lookup('file', 'files/coreos-python.sh') }}"
       image: "{{ coreos_image }}"
-#      floating_ip_pools:
-#        - "{{ floating_ip_pool }}"
       meta: 
         ansible: "lab-machines"  
     with_items: 
-      - lab01
+      - lab02
     register: result
        
   - name: Wait for the post install script to finish
     pause: minutes=1
     when: result|changed
 
+  - debug: msg=result
+
+  - name: Add lab machines to the inventory
+    add_host: name="foo"
+    when: result|changed
+
 - name: Ensure Lab is setup
+  gather_facts: true
   hosts: lab-machines
   roles: 
     - lab
