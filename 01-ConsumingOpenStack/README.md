@@ -21,8 +21,19 @@ The password is Cisco.123
 
 ## 1.2 Exercise - Build your Environment
 
-Navigate to the Metapod dashboard and download the credentials.  
-You can hardcode this into a file we will create, based on this file: 
+Login to the Metapod horizon dashboard.  This is a URL that should be posted
+at the front of the class.  
+
+Click on the 'ACCESS AND SECURITY' 
+
+![Dashboard](/images/d1.png "Metapod Dashboard")
+
+Navigate to the 'API Access' tab in the workpane and download the Openstack RC file. 
+
+![API Access ](/images/d1.png "API Access")
+
+This file contains all the environment variables we need to access the APIs.  Save this 
+file then open with a text editor to see what was set. 
 
 ### 1.2.1 Export Environment Variables
 
