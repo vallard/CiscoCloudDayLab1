@@ -43,8 +43,14 @@ file then open with a text editor to see what was set.
 
 ### 1.2.1 Export Environment Variables
 
-Open 
+Edit the ```~/.profile`` file.  This file contains settings that get executed each time
+a user logs into the shell. 
 
+You can use vi or nano. If you want emacs installed then you should probably just stop
+using this lab right now.  
+
+![There's a nice 5 minute introduction](http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html)
+to vi that might help if you wish to learn that.  (recommended if you are not!)
 
 ```
 export OS_AUTH_URL=""
@@ -57,17 +63,41 @@ export OS_REGION_NAME="RegionOne"
 Setting these environment variables will allow your other programs to access the 
 APIs of the lab for all the excercises.  
 
+Log out and log back in for your environment variables to become active.  
+Alternatively, run the command: 
+
+```
+source ~/.profile
+```
+
+When you log in make sure you see all the environment variables defined: 
+
+```
+env | grep OS
+```
+
+_NOTE: The OpenStack RC file that you download asks you to enter your password when
+you first login to a new shell.  This doesn't work so well in the .profile file. 
+So this is really just a matter of style.  You can also chose to simply source the 
+OpenStack file you downloaded from Metapod._
 
 ## 1.3 Exercise  - Curl: Using raw APIs
 
 The OpenStack APIs return JSON responses to common web requests.  We can use curl to simply
-make web calls to the interface.  Let's try running a curl request. 
+make web calls to the interface.  Let's try running a curl request against the OpenStack
+Authentication URL: 
 
 ```
-curl
+curl $OS_AUTH_URL
 ```
 
-Note:  If you get an error please check that your environment variables are set up correctly.
+You should receive a bunch of text back in one line.  This return format is called JSON.  
+JSON = Javascript Object Notation.  JSON is great because its compact and easy to learn
+
+![Learn more about JSON in this five minute official introduction.](http://www.json.org/)
+
+_Note:  If you get something that looks like an error please check that your environment 
+variables are set up correctly._
 
 ## 1.4 Exercise - Using Python Clients
 
