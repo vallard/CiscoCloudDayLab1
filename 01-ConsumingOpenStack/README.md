@@ -30,11 +30,11 @@ to your own environment._
 Login to the Metapod horizon dashboard.  This is a URL that should be posted
 at the front of the class.  
 
-Click on the 'ACCESS AND SECURITY' 
+Click on the __ACCESS AND SECURITY__ 
 
 ![Dashboard](images/d1.png "Metapod Dashboard")
 
-Navigate to the 'API Access' tab in the workpane and download the Openstack RC file. 
+Navigate to the __API Access__ tab in the workpane and download the Openstack RC file. 
 
 ![API Access ](images/d1.png "API Access")
 
