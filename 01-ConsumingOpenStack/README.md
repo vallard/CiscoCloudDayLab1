@@ -49,7 +49,7 @@ a user logs into the shell.
 You can use vi or nano. If you want emacs installed then you should probably just stop
 using this lab right now.  
 
-![There's a nice 5 minute introduction](http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html)
+[There's a nice 5 minute introduction](http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html)
 to vi that might help if you wish to learn that.  (recommended if you are not!)
 
 ```
@@ -94,7 +94,7 @@ curl $OS_AUTH_URL
 You should receive a bunch of text back in one line.  This return format is called JSON.  
 JSON = Javascript Object Notation.  JSON is great because its compact and easy to learn
 
-![Learn more about JSON in this five minute official introduction.](http://www.json.org/)
+[Learn more about JSON in this five minute official introduction.](http://www.json.org/)
 
 _Note:  If you get something that looks like an error please check that your environment 
 variables are set up correctly._
