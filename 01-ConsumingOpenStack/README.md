@@ -1,10 +1,10 @@
-# Cisco Cloud Days Lab - Module 1: Consuming OpenStack APIs
+# Module 1: Consuming OpenStack APIs
 
 This module will focus on using OpenStack APIs using various configuration
 tools.  When completed, the user will gain an understanding of how to 
 communicate with the OpenStack APIs in Metapod.  
 
-## 1.1 Log into labs
+## 1.1 Log into lab work stations
 
 The instructor will have several IP addresses available for you to log
 into.
@@ -17,7 +17,13 @@ On a MAC:
 ```
 ssh -p 2222 userXX@<IP ADDRESS> 
 ```
-The password is Cisco.123
+
+The password is ```Cisco.123```
+
+_Note:  You may wish to do some of these exercises on your own laptop.  Setting
+up your laptop for development is a very personal decision and not one we will 
+cover in these labs. You are welcome and encouraged to try and adapt these instructions 
+to your own environment._  
 
 ## 1.2 Exercise - Build your Environment
 
@@ -36,6 +42,9 @@ This file contains all the environment variables we need to access the APIs.  Sa
 file then open with a text editor to see what was set. 
 
 ### 1.2.1 Export Environment Variables
+
+Open 
+
 
 ```
 export OS_AUTH_URL=""
