@@ -67,7 +67,7 @@ Log out and log back in for your environment variables to become active.
 Alternatively, run the command: 
 
 ```
-source ~/.profile
+. ~/.profile
 ```
 
 When you log in make sure you see all the environment variables defined: 
@@ -91,13 +91,19 @@ Authentication URL:
 curl $OS_AUTH_URL
 ```
 
-You should receive a bunch of text back in one line.  This return format is called JSON.  
+You should receive a bunch of text back in one line similar to the below:
+
+```json
+{"version": {"status": "stable", "updated": "2014-04-17T00:00:00Z", "media-types": [{"base": "application/json", "type": "application/vnd.openstack.identity-v2.0+json"}, {"base": "application/xml", "type": "application/vnd.openstack.identity-v2.0+xml"}], "id": "v2.0", "links": [{"href": "http://api-demo1.client.metacloud.net:5000/v2.0/", "rel": "self"}, {"href": "http://docs.openstack.org/api/openstack-identity-service/2.0/content/", "type": "text/html", "rel": "describedby"}, {"href": "http://docs.openstack.org/api/openstack-identity-service/2.0/identity-dev-guide-2.0.pdf", "type": "application/pdf", "rel": "describedby"}]}}
+```
+
+This return format is called JSON.  
 JSON = Javascript Object Notation.  JSON is great because its compact and easy to learn
 
 [Learn more about JSON in this five minute official introduction.](http://www.json.org/)
 
 _Note:  If you get something that looks like an error please check that your environment 
-variables are set up correctly._
+variables are set up correctly by going through section 1.2._
 
 ## 1.4 Exercise - Using Python Clients
 
