@@ -1,7 +1,8 @@
 # Module 1: Consuming OpenStack APIs
 
 1.1 [Log into lab work stations](## 1.1 Log into lab work stations)
-
+1.2 [Exercise - Build your environment](## Exercise - Build your Environment)
+1.3 [Exercise - Curl: Using raw APIs](## Exercise - Curl: Using raw APIs)
 
 
 This module will focus on using OpenStack APIs using various configuration
