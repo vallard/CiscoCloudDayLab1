@@ -158,7 +158,6 @@ to launch an instance.
 
 In cloud computing we typically call 'vms' 'instances' to denote their ephemeral nature. 
 
-#### 1.4.2.1 List current servers
 Let's start by listing the existing servers that are currently running in your project. 
 This can be done by running the below command:
 
@@ -172,7 +171,7 @@ require operations on instances are usually performed using nova.
 Take note of the names.  When we create a new server, we don't want to duplicate a name that is
 already there!  OpenStack allows this, but this creates confusion!
 
-#### 1.4.3 Show OpenStack flavors
+### 1.4.3 Show OpenStack flavors
 
 A flavor is an abstraction that describes the virtual hardware of what an instance looks like. 
 For example, a flavor details: 
@@ -207,7 +206,7 @@ and get the same results.
 OpenStack tries to stick with the CRUD model, so for most subcommands there is a ```-show```, ```-delete```
 , and ```-list``` command. 
 
-#### 1.4.4 Show OpenStack Images
+### 1.4.4 Show OpenStack Images
 
 ```
 nova image-list
@@ -222,7 +221,7 @@ environments will make their own.
 
 Find the ubuntu image ```ubuntu-14.04-server``` as this is what we'll use.  
 
-#### 1.4.5 Generate a Keypair
+### 1.4.5 Generate a Keypair
 
 In order to log into an instance that we will create we need to make a keypair.  The Keypair 
 consists of a public and private key.  The public key will be installed on the instance when 
@@ -250,7 +249,7 @@ will show you all the keys in your system.  You can delete the key you made late
 nova keypair-delete <name>key
 ```
 
-#### 1.4.6 Create a new instance
+### 1.4.6 Create a new instance
 
 Run the following command to create a new instance
 
@@ -263,7 +262,7 @@ Where ```<name>``` is your fun unique name.
 Check on the status to see if the server has been created using the ```nova list``` and 
 ```nova show <name>firstimage``` commands.
 
-#### 1.4.7 Log In to the new Instance
+### 1.4.7 Log In to the new Instance
 
 To make sure you did it right, log into the new instance you just created:
 ```
@@ -292,12 +291,7 @@ Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-62-generic x86_64)
 0 packages can be updated.
 0 updates are security updates.
 
-
-
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
+...
 Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
 applicable law.
 
@@ -308,14 +302,17 @@ This concludes Exercise 1.4.  You have created an instance using the
 command line. Everything you have done so far could also be done on 
 the Horizon dashboard that Metapod provides.  
 
-## 1.5 Creating your own Python
+There are other clients that you can experiment with if you have time
+including the cinder and keystone clients.
+
+## 1.5 Creating your own Python Commands
 
 The python client contain libraries that can also be used by our own
 python code that we write.  To illustrate this, we'll show some code 
 that uses it.  
 
-We'll use [this sample application](https://github.com/vallard/COPC-API-Examples/blob/master/02-Python/sample-python-get.py)
-.  Open your web browser and have a 
+We'll use [this sample application](https://github.com/vallard/COPC-API-Examples/blob/master/02-Python/sample-python-get.py).
+Open your web browser and have a 
 look.  
 
 
@@ -325,4 +322,72 @@ On the workstation, download a sample python application:
 wget https://raw.githubusercontent.com/vallard/COPC-API-Examples/master/02-Python/sample-python-get.py
 chmod 0755 sample-python-get.py
 ```
+
+You can then run the command by executing: 
+
+```
+./sample-python-get.py
+```
+You will see a bunch of output flow by!  All the application is doing is running a few list commands and putting
+them into variables and using them. There may be errors in the code.  Bonus points if you can
+fix it!
+
+## 1.6 Ansible
+
+Eventually as you start making your own scripts to manage fleets of Virtual machines
+you will create a framework of scripts to manage the environment.  This framework
+unless radically different than what is already available is called 'Reinventing
+the Wheel'.  Its fun, but can become cumbersome.  Instead a better idea would be
+to explore a different framework.  
+
+Ansible is great framework to start with.  
+
+Currently Ansible is stuck somewhere version 1.9 and 2.0.  2.0 has a lot of OpenStack
+goodness to it, but is pretty buggy if your environment isn't setup for later 
+distributions. 
+
+Ansible has the idea of 'playbooks'.  These are just run scripts that we use to
+run common tasks like install a package or provision an instance.  
+
+### 1.6.1 Get Sample Ansible
+
+Ansible is already set up on the workstation.  Let's download some playbooks that
+are mostly written that we can use.  On your lab machine run the command: 
+
+```
+git clone https://github.com/vallard/COPC-API-Examples.git
+```
+
+This will clone several examples that we may use later on. 
+
+### 1.6.1 Edit playbook
+
+Change to the directory where Ansible scripts are laid out for you.  
+
+```
+cd COPC-API-Examples/03-Ansible/
+```
+
+Here you will find a playbook called copc-one.yml.  Open this file 
+and we will edit it. 
+
+* Enter an image ID.  You may need to run ```nova image-list``` to access one. Note, make
+sure this is the image ID and not the image name. 
+* Enter your key name.  This is the key name you used in a previous exercise. 
+
+Notice that the script will also use environment variables.  In Ansible
+2.0 these are not required and picked up automatically with the new
+[shade library.](http://docs.openstack.org/infra/shade/)
+
+### 1.6.2 Run the playbook
+
+We can run the playbook to create a new OpenStack image by running: 
+
+```
+ansible-playbook copc-one.yml
+```
+
+Log into the dashboard or run ```nova list``` to make sure that the
+instance is up.  
+
 
