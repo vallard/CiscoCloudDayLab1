@@ -4,10 +4,8 @@ This module will focus on using OpenStack APIs using various configuration
 tools.  When completed, the user will gain an understanding of how to 
 communicate with the OpenStack APIs in Metapod.  
 
-Table of Contents
-=================
+## Table of Contents
 
-  * [Module 1: Consuming OpenStack APIs](#module-1-consuming-openstack-apis)
   * [1\.1 Log into lab work stations](#11-log-into-lab-work-stations)
   * [1\.2 Exercise \- Build your Environment](#12-exercise---build-your-environment)
     * [1\.2\.1 Export Environment Variables](#121-export-environment-variables)
