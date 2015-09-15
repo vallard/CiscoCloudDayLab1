@@ -308,4 +308,21 @@ This concludes Exercise 1.4.  You have created an instance using the
 command line. Everything you have done so far could also be done on 
 the Horizon dashboard that Metapod provides.  
 
+## 1.5 Creating your own Python
+
+The python client contain libraries that can also be used by our own
+python code that we write.  To illustrate this, we'll show some code 
+that uses it.  
+
+We'll use [this sample application](https://github.com/vallard/COPC-API-Examples/blob/master/02-Python/sample-python-get.py)
+.  Open your web browser and have a 
+look.  
+
+
+On the workstation, download a sample python application: 
+
+```
+wget https://raw.githubusercontent.com/vallard/COPC-API-Examples/master/02-Python/sample-python-get.py
+chmod 0755 sample-python-get.py
+```
 
