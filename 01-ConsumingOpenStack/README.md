@@ -112,22 +112,34 @@ the command line a convenient way to execute common tasks.
 
 ### 1.4.1 Show the python client libraries.
 
+Run the command below:
 ```
 pip list
 ```
+
+This gives you a list of python packages (libraries) that are installed on the system.  
 
 Pip is a python packaging tool that allows for simple downloading of python libraries.  You'll see
 that several OpenStack python clients have been installed.  The client names correspond to the 
 project.  
 
-You can install other python libraries by running the ```pip install``` command.  Let's install
-a client that we're missing:
+```
+python-cinderclient (1.4.0)
+python-heatclient (0.7.0)
+python-keystoneclient (1.7.1)
+python-novaclient (2.29.0)
+python-swiftclient (2.6.0)
+```    
 
-```
-pip install troveclient
-```
+If you had ```sudo``` access you would be able to install other python libraries by running the 
+```pip install``` command. 
 
 ### 1.4.2 Launch a server
+
+Now that you see several OpenStack python client libraries are installed we can use these libraries
+to launch an instance.  
+
+In cloud computing we typically call 'vms' 'instances' to denote their ephemeral nature. 
 
 #### 1.4.2.1 List current servers
 Let's start by listing the existing servers that are currently running in your project. 
@@ -151,8 +163,128 @@ For example, a flavor details:
 * The number of vCPUs
 * The amount of RAM
 * Available disk
-python
-Ansible
-Heat (Use Steve Watkins Heat Template)
-Terraform
+
+Run the command: 
+
+```
+nova flavor-list
+```
+
+This will show the different flavors availabe in the system.  In Metapod the administrators have
+the ability to create different flavors.  For example, a project may require a flavor that uses
+all the resources of a physical machine for using Apache Spark with HDFS.  
+
+Take note of the m1.large ID.  This may be 3 or something else.  We can get more information on this
+
+```
+nova flavor-show 3
+```
+
+alternatively you can run: 
+```
+nova flavor-show m1.large
+```
+
+and get the same results. 
+
+OpenStack tries to stick with the CRUD model, so for most subcommands there is a ```-show```, ```-delete```
+, and ```-list``` command. 
+
+#### 1.4.4 Show OpenStack Images
+
+```
+nova image-list
+```
+or 
+```
+glance image-list
+```
+
+You should see lots of images!  Cisco Metapod comes with many already predefined for you.  Most 
+environments will make their own.  
+
+Find the ubuntu image ```ubuntu-14.04-server``` as this is what we'll use.  
+
+#### 1.4.5 Generate a Keypair
+
+In order to log into an instance that we will create we need to make a keypair.  The Keypair 
+consists of a public and private key.  The public key will be installed on the instance when 
+it is launched and the private key we will download and use to log into the instance.  
+
+Run the command: 
+```
+nova keypair-add <name>key | tee <name>key.pem
+chomd 600 <name>key.pem
+```
+Where <name> is your name, or some amazingly distinguished unique name that you will know is
+yours.  
+
+This command will generate the output of the private key. The ```tee`` command is a shell
+command that will pipe the key output to a file called ```<name>key.pem```
+
+Running the command 
+
+```
+nova keypair-list
+```
+
+will show you all the keys in your system.  You can delete the key you made later by running
+```
+nova keypair-delete <name>key
+```
+
+#### 1.4.6 Create a new instance
+
+Run the following command to create a new instance
+
+```
+nova boot --flavor m1.large --image ubuntu-14.04-server --key-name <name>key <name>firstimage
+```
+
+Where ```<name>``` is your fun unique name.  
+
+Check on the status to see if the server has been created using the ```nova list``` and 
+```nova show <name>firstimage``` commands.
+
+#### 1.4.7 Log In to the new Instance
+
+To make sure you did it right, log into the new instance you just created:
+```
+ssh -i <name>key.pem ubuntu@<name>firstimage
+```
+where ```<name>``` is once again the unique name you picked. 
+
+If all is successful you should be able to login with out a password: 
+```
+$ ssh -i chomp.pem ubuntu@chomp
+Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-62-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+   System information as of Tue Sep 15 19:41:25 UTC 2015
+
+   System load: 0.0               Memory usage: 1%   Processes:       76
+   Usage of /:  56.9% of 1.32GB   Swap usage:   0%   Users logged in: 0
+
+   Graph this data and manage this system at:
+       https://landscape.canonical.com/
+
+   Get cloud support with Ubuntu Advantage Cloud Guest:
+       http://www.ubuntu.com/business/services/cloud
+
+0 packages can be updated.
+0 updates are security updates.
+
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+ubuntu@chomp:~$ 
+```
+
 
