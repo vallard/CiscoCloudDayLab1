@@ -1,5 +1,9 @@
 # Module 1: Consuming OpenStack APIs
 
+1.1 [## 1.1 Log into lab work stations](Access Lab Work Stations)
+
+
+
 This module will focus on using OpenStack APIs using various configuration
 tools.  When completed, the user will gain an understanding of how to 
 communicate with the OpenStack APIs in Metapod.  
@@ -286,5 +290,9 @@ applicable law.
 
 ubuntu@chomp:~$ 
 ```
+
+This concludes Exercise 1.4.  You have created an instance using the 
+command line. Everything you have done so far could also be done on 
+the Horizon dashboard that Metapod provides.  
 
 
