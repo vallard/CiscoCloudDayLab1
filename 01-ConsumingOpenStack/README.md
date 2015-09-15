@@ -1,6 +1,6 @@
 # Module 1: Consuming OpenStack APIs
 
-1.1 [## 1.1 Log into lab work stations](Access Lab Work Stations)
+1.1 [Log into lab work stations](## 1.1 Log into lab work stations)
 
 
 
