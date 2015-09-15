@@ -30,18 +30,21 @@
       meta: 
         ansible: "lab-machines"  
     with_items: 
-      - lab02
+      - lab01
     register: result
        
   - name: Wait for the post install script to finish
-    pause: minutes=1
+    pause: minutes=2
     when: result|changed
 
-  - debug: msg=result
+#  - debug: var=result.results
+
+#  - debug: var={{item.openstack.public_v4}}
+#    with_items: result.results
 
   - name: Add lab machines to the inventory
-    add_host: name="foo"
-    when: result|changed
+    add_host: hostname={{item.openstack.public_v4}} groupname=lab-machines
+    with_items: result.results
 
 - name: Ensure Lab is setup
   gather_facts: true
