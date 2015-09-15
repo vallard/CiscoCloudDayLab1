@@ -1,25 +1,27 @@
 # Module 1: Consuming OpenStack APIs
-Table of Contents
-=================
-
-  * [Module 1: Consuming OpenStack APIs](#module-1-consuming-openstack-apis)
-      * [1\.1 Log into lab work stations](#11-log-into-lab-work-stations)
-          * [1\.2 Exercise \- Build your Environment](#12-exercise---build-your-environment)
-                * [1\.2\.1 Export Environment Variables](#121-export-environment-variables)
-                    * [1\.3 Exercise  \- Curl: Using raw APIs](#13-exercise----curl-using-raw-apis)
-                        * [1\.4 Exercise \- Using Python Clients](#14-exercise---using-python-clients)
-                              * [1\.4\.1 Show the python client libraries\.](#141-show-the-python-client-libraries)
-                                    * [1\.4\.2 Launch a server](#142-launch-a-server)
-                                            * [1\.4\.2\.1 List current servers](#1421-list-current-servers)
-                                                    * [1\.4\.3 Show OpenStack flavors](#143-show-openstack-flavors)
-                                                            * [1\.4\.4 Show OpenStack Images](#144-show-openstack-images)
-                                                                    * [1\.4\.5 Generate a Keypair](#145-generate-a-keypair)
-                                                                            * [1\.4\.6 Create a new instance](#146-create-a-new-instance)
-                                                                                    * [1\.4\.7 Log In to the new Instance](#147-log-in-to-the-new-instance)
 
 This module will focus on using OpenStack APIs using various configuration
 tools.  When completed, the user will gain an understanding of how to 
 communicate with the OpenStack APIs in Metapod.  
+
+Table of Contents
+=================
+
+  * [Module 1: Consuming OpenStack APIs](#module-1-consuming-openstack-apis)
+  * [1\.1 Log into lab work stations](#11-log-into-lab-work-stations)
+  * [1\.2 Exercise \- Build your Environment](#12-exercise---build-your-environment)
+  * [1\.2\.1 Export Environment Variables](#121-export-environment-variables)
+  * [1\.3 Exercise  \- Curl: Using raw APIs](#13-exercise----curl-using-raw-apis)
+  * [1\.4 Exercise \- Using Python Clients](#14-exercise---using-python-clients)
+  * [1\.4\.1 Show the python client libraries\.](#141-show-the-python-client-libraries)
+  * [1\.4\.2 Launch a server](#142-launch-a-server)
+  * [1\.4\.2\.1 List current servers](#1421-list-current-servers)
+  * [1\.4\.3 Show OpenStack flavors](#143-show-openstack-flavors)
+  * [1\.4\.4 Show OpenStack Images](#144-show-openstack-images)
+  * [1\.4\.5 Generate a Keypair](#145-generate-a-keypair)
+  * [1\.4\.6 Create a new instance](#146-create-a-new-instance)
+  * [1\.4\.7 Log In to the new Instance](#147-log-in-to-the-new-instance)
+
 
 ## 1.1 Log into lab work stations
 
