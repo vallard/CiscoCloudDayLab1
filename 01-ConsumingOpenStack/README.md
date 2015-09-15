@@ -390,4 +390,58 @@ ansible-playbook copc-one.yml
 Log into the dashboard or run ```nova list``` to make sure that the
 instance is up.  
 
+## 1.7 OpenStack Heat
 
+OpenStack Heat is another way to declaritively initialize an environment. 
+There is overlap with what you can do with Ansible.  Perhaps the best 
+reason to use Heat is that its native to the OpenStack environment and
+can be called from other OpenStack projects to autoscale environments.  
+
+### 1.7.1 Edit a sample Heat Template
+
+On your workstation, you cloned a repository with git previously.  Let's 
+look at the file and edit it right now. 
+
+```
+cd ~/COPC-API-Examples/04-Heat/
+```
+Modify the ```heat-wget.yml``` file.  
+
+* Make sure the image name actually exists on the system.  Use 
+```glance image-list``` to verify
+* Make sure your keypair is there. 
+
+Save the changes and close the file. 
+
+### 1.7.2 Run the heat template
+
+You can now run the Heat stack by running: 
+```
+$ heat stack-create mytest --template-file=./heat-wget.yml
+```
+The output will look similar to: 
+```
++--------------------------------------+------------+--------------------+----------------------+
+| id                                   | stack_name | stack_status       | creation_time        |
++--------------------------------------+------------+--------------------+----------------------+
+| 4b55cc3a-03b7-49e6-9ecb-69862fe237a3 | mytest     | CREATE_IN_PROGRESS | 2015-09-15T23:42:07Z |
++--------------------------------------+------------+--------------------+----------------------+
+```
+
+Running ```nova list``` will show the instance that it created.  In
+this example we've only done a small amount of what Heat can do.  It 
+can also create volumes and assign floating IP addresses.  
+
+We can see all of our heat templates by running: 
+
+```
+heat stack-list
+```
+More information on Heat Stacks is available from the 
+[OpenStack Website.](http://docs.openstack.org/havana/install-guide/install/apt/content/heat-stack-create.html)
+
+# 1.8 Terraform
+
+Terraform is another tool like Heat that declaratively creates infrastructure as code. 
+Unlike OpenStack Heat, it works across different environments such as GCE, AWS, and 
+several more.  
