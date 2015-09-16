@@ -19,6 +19,15 @@ communicate with the OpenStack APIs in Metapod.
     * [1\.4\.5 Generate a Keypair](#145-generate-a-keypair)
     * [1\.4\.6 Create a new instance](#146-create-a-new-instance)
     * [1\.4\.7 Log In to the new Instance](#147-log-in-to-the-new-instance)
+  * [1\.5 Creating your own Python Commands](#15-creating-your-own-python-commands)
+  * [1\.6 Ansible](#16-ansible)
+    * [1\.6\.1 Get Sample Ansible](#161-get-sample-ansible)
+    * [1\.6\.1 Edit playbook](#161-edit-playbook)
+    * [1\.6\.2 Run the playbook](#162-run-the-playbook)
+  * [1\.7 OpenStack Heat](#17-openstack-heat)
+    * [1\.7\.1 Edit a sample Heat Template](#171-edit-a-sample-heat-template)
+    * [1\.7\.2 Run the heat template](#172-run-the-heat-template)
+  * [1\.8 Terraform](#18-terraform)
 
 
 ## 1.1 Log into lab work stations
