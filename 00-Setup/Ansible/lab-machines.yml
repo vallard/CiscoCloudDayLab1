@@ -30,7 +30,7 @@
       meta: 
         ansible: "lab-machines"  
     with_items: 
-      - lab01
+      - lab02
     register: result
        
   - name: Wait for the post install script to finish
