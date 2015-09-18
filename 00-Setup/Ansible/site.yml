@@ -1,2 +1,2 @@
-- include: launch.yml
-- include: infra.yml
+- include: lab-workstations.yml
+- include: lab-infrastructure.yml

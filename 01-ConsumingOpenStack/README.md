@@ -131,6 +131,18 @@ JSON = Javascript Object Notation.  JSON is great because its compact and easy t
 _Note:  If you get something that looks like an error please check that your environment 
 variables are set up correctly by going through section 1.2._
 
+You can also request a token to do other openstack commands using: 
+
+```
+curl -d '{"auth":{"passwordCredentials":{"username": "'"$OS_USERNAME"'", "password": "'"$OS_PASSWORD"'" }}}' \
+-H "Content-type: application/json" -X POST $OS_AUTH_URL/tokens}}} | python -m json.tool
+```
+_Note the double quotes around the OS variables.  This is to ensure these variables are passed to the curl command._
+
+The ```python -m json.tool``` at the end will format it nicely.  
+
+
+
 ## 1.4 Exercise - Using Python Clients
 
 OpenStack has python client libraries that can be installed to make managing your cloud via
