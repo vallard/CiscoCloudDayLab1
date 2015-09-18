@@ -1,0 +1,50 @@
+- name: Ensure lab infrastructure is ready!
+  connection: local
+  hosts: localhost
+  vars_files:
+   - vars/metacloud_vars.yml
+  tasks: 
+  - name: ensure there is a volume for storing data. 
+    os_volume: 
+      size: 40
+      display_name: lab_volume
+    register: vol
+ 
+  - name: "Debug"
+    debug: var=vol
+
+  - name: Ensure lab infrastructure is up
+    os_server:
+      name: "{{ item }}"
+      key_name: "{{ keypair }}"
+      flavor: "{{ m1large }}"
+      security_groups: "{{ security_group }}"
+      userdata:  "{{ lookup('file', 'files/coreos-python.sh') }}"
+      image: "{{ coreos_image }}"
+      meta: 
+        ansible: "infra"  
+    with_items: 
+      - infra01
+    register: result
+       
+  - name: Wait for the post install script to finish
+    pause: minutes=2
+    when: result|changed
+
+  - name: Ensure volume is attached to host. 
+    os_server_volume: 
+      state: present
+      server: result.results[0].openstack.name
+      volume: 
+
+  - name: Add lab machines to the inventory
+    add_host: hostname={{item.openstack.public_v4}} groupname=infra
+    with_items: result.results
+
+- name: Ensure Lab is setup
+  gather_facts: true
+  hosts: infra
+  roles: 
+    - filesystem
+    - gitlab
+    - jenkins

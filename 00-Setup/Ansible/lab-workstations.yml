@@ -1,0 +1,40 @@
+- name: Ensure lab machines are up
+  connection: local
+  hosts: localhost
+  vars_files:
+   - vars/metacloud_vars.yml
+  tasks: 
+  - name: Ensure lab machines are up
+    os_server:
+      state: present
+      name: "{{ item }}"
+      key_name: "{{ keypair }}"
+      flavor: "{{ m1large }}"
+      security_groups: "{{ security_group }}"
+      userdata:  "{{ lookup('file', 'files/coreos-python.sh') }}"
+      image: "{{ coreos_image }}"
+      meta: 
+        ansible: "lab-machines"  
+    with_items: 
+      - lab01
+      - lab02
+    register: result
+       
+  - name: Wait for the post install script to finish
+    pause: minutes=2
+    when: result|changed
+
+#  - debug: var=result.results
+
+#  - debug: var={{item.openstack.public_v4}}
+#    with_items: result.results
+
+  - name: Add lab machines to the inventory
+    add_host: hostname={{item.openstack.public_v4}} groupname=lab-machines
+    with_items: result.results
+
+- name: Ensure Lab is setup
+  gather_facts: true
+  hosts: lab-machines
+  roles: 
+    - lab
