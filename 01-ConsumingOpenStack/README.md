@@ -7,7 +7,7 @@ communicate with the OpenStack APIs in Metapod.
 ## Table of Contents
 
   * [1\.1 Log into lab work stations](#11-log-into-lab-work-stations)
-  * [1\.2 Exercise \- Build your Environment](#12-exercise---build-your-environment)
+  * [1\.2 Exercise \- Build Workstation Environment](#12-exercise---build-workstation-environment)
     * [1\.2\.1 Export Environment Variables](#121-export-environment-variables)
   * [1\.3 Exercise  \- Curl: Using raw APIs](#13-exercise----curl-using-raw-apis)
   * [1\.4 Exercise \- Using Python Clients](#14-exercise---using-python-clients)
@@ -51,7 +51,7 @@ up your laptop for development is a very personal decision and not one we will
 cover in these labs. You are welcome and encouraged to try and adapt these instructions 
 to your own environment._  
 
-## 1.2 Exercise - Build your Environment
+## 1.2 Exercise - Build Workstation Environment
 
 Login to the Metapod horizon dashboard.  This is a URL that should be posted
 at the front of the class.  
