@@ -146,6 +146,41 @@ changes will be pushed upstream. If two or more developers were working on the s
 code then the other developer would need to run ```git pull``` while in his local
 repo to sync to the latest changes. 
 
+Let's add another file to this local directory.  
+```
+vim foo.txt
+```
+Add some text to the foo.txt file then save the file and close it.  Then run:
+```
+git status
+```
+Git tells us there is an untracked file.  We can add this file: 
+```
+git add -A
+```
+The ```-A``` tells git to add all untracked files recursively.  After adding the
+file we need to commit it, so we again run: 
+```
+git commit -am "Added the foo.txt file for pleasure"
+```
+Finally, we can push this file again and see it show up in Github:
+```
+git push
+```
+This time, git remembers your login password so you don't have to enter it twice.  
+Run
+```
+git log
+```
+To see the history of this repository. 
+
+At this point with Git, if you are working on your own, this is really all the
+commands you need to know. If you delete files, you just need to commit and the files
+will be deleted.  
+
+_IMPORTANT: One of the common problems people have is pushing passwords to Git repos. 
+Even if you delete the file after its been committed and pushed, that password will
+still exist on the internet._
 
 ### 2.1.4 Branches with Git
 
