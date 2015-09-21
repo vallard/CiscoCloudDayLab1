@@ -72,11 +72,7 @@ file then open with a text editor to see what was set.
 Edit the ```~/.profile`` file.  This file contains settings that get executed each time
 a user logs into the shell. 
 
-You can use vi or nano. If you want emacs installed then you should probably just stop
-using this lab right now.  
-
-[There's a nice 5 minute introduction](http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html)
-to vi that might help if you wish to learn that.  (recommended if you are not!)
+When you open the file you will see the skeleton values set below:
 
 ```
 export OS_AUTH_URL=""
@@ -86,8 +82,20 @@ export OS_USERNAME=""
 export OS_PASSWORD=""
 export OS_REGION_NAME="RegionOne"
 ```
+
+You'll need to modify the variables OS_AUTH_URL, etc and fill in the actual values 
+you got from the OpenStack RC file that you downloaded in the previous step. 
+
+_NOTE: Make sure you leave the ```export``` in front of the definition_
+
 Setting these environment variables will allow your other programs to access the 
 APIs of the lab for all the excercises.  
+
+You can use vi or nano. If you want emacs installed then you should probably just stop
+using this lab right now.  
+
+[There's a nice 5 minute introduction](http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html)
+to vi that might help if you wish to learn that.  (recommended if you are not!)
 
 Log out and log back in for your environment variables to become active.  
 Alternatively, run the command: 
