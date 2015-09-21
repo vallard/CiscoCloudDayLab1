@@ -6,7 +6,7 @@
   * [2\.1\.3 Working with Git](#213-working-with-git)
   * [2\.1\.4 Branches with Git](#214-branches-with-git)
   * [2\.1\.5 Open an Issue](#215-open-an-issue)
-  * [2\.1\.6 Clone a repository](#216-clone-a-repository)
+  * [2\.1\.6 Fork a repository](#216-clone-a-repository)
   * [2\.1\.7 Pull Requests](#217-pull-requests)
 * [2\.2 Docker](#22-docker)
   * [2\.2\.1 Searching Containers](#221-searching-containers)
@@ -184,9 +184,64 @@ still exist on the internet._
 
 ### 2.1.4 Branches with Git
 
-### 2.1.5 Open an Issue
+Branching is the idea that we make a copy of the existing repo to make changes. 
+We then may decide to merge a branch back into the main code or just disgard the
+changes.  Let's create a branch of our existing code
 
-### 2.1.6 Clone a repository
+```
+git branch twig
+```
+Now we can see all the branches in this repository by running:
+```
+git branch
+```
+To work in the branch we'll check out this new branch
+```
+git checkout twig
+```
+Add remove the ```foo.txt``` file and then commit the changes:
+```
+git 'rm *.txt'
+git commit -am "Removed the text file"
+```
+Now let's go back to the master branch:
+```
+git checkout master
+```
+the twig foo.txt file exists still.  But when we merge the brancheds:
+```
+git merge twig
+```
+The foo.txt file is gone and we are on the master branch and those changes
+have been made. 
+Now we can get rid of the ```twig``` branch
+```
+git branch -d twig
+```
+Once again we can push the changes upstream using 
+```
+git push
+```
+
+### 2.1.5 Open an Issue
+How can thousands of developers work asyncronously on the same code stream?
+Git solves many of these issues through branches, commits, etc to keep 
+developers in sync.  If you think about the fact that many developers on 
+big open source projects have never met in real life yet manage to get things
+done without meetings it is quite remarkable.  
+
+In this section we'll talk about what happens if you find a problem with 
+code you're working on.  It starts with opening an issue.  
+Open your browser to [This Repo's issues](https://github.com/vallard/CiscoCloudDayLab1/issues). 
+
+Here you see the lab that you are working on right now. Create a new issue
+with this repo.  You may not like the grammar, or you may find a spelling error,
+or you may have found something you wanted clarified.  
+Create a new issue by clicking the green new isue button.  
+
+
+
+### 2.1.6 Fork a repository
 
 ### 2.1.7 Pull Requests 
 
