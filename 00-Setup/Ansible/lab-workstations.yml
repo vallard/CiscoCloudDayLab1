@@ -5,6 +5,12 @@
    - vars/metacloud_vars.yml
   tasks: 
   - name: Ensure lab machines are up
+    os_security_group:
+      cloud: cloudweek
+      name: lab
+      description: lab security group for workstations
+
+  - name: Ensure lab machines are up
     os_server:
       state: present
       name: "{{ item }}"
