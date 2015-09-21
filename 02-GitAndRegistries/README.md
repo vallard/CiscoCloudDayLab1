@@ -239,9 +239,38 @@ with this repo.  You may not like the grammar, or you may find a spelling error,
 or you may have found something you wanted clarified.  
 Create a new issue by clicking the green new isue button.  
 
+![Github issue](./images/gh4.png)
 
+These issues can be tracked and developers comment on the code and changes that may 
+be desired.  Some issues can [get quite heated](https://github.com/karma-runner/karma/issues/376). 
+[other example](https://github.com/twbs/bootstrap/issues/3057) as many people have different opinions. 
 
 ### 2.1.6 Fork a repository
+
+After opening up issues, people might just say: "Yes, you're right someone should
+fix that, so maybe you can.".  If you want to go about fixing issues to solve 
+your own problems github allows you to do this.  
+
+In addition, you may have philisophical disagreements with the project and wish
+to create your own project from this.  This is what happened to bitcoin in summer
+2015.  A subset if developers thought that the blockchain should be modified
+to allow for more transactions per block.  
+[More info on this debate can be read here](https://medium.com/faith-and-future/why-is-bitcoin-forking-d647312d22c1)
+
+The first step in both of these use cases is to fork the code.  Then you make
+changes to your local forked repo.  If you want this code to then go back
+into the mainstream, you simply do a pull request.  Let's make a fork of 
+this project. 
+
+Navigate to this [Cloud Lab](https://github.com/vallard/CiscoCloudDayLab1)
+
+Click the Fork button at the top right hand of the screen and fork this into your own 
+github repo. 
+
+![Fork the CloudDay Lab](./images/gh5.png)
+
+You'll now have your own copy of the entire lab including all the images,
+scripts, and documentation.  
 
 ### 2.1.7 Pull Requests 
 
