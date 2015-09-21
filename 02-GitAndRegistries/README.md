@@ -53,9 +53,99 @@ email.  When selecting passwords, keep this in mind.
 
 ![Password Hints](http://imgs.xkcd.com/comics/password_strength.png)
 
+![Github signup](./images/gh1.png)
+
 ### 2.1.2 Create your own project
 
+Once logged into Github, click the '+ New repository' button on the right hand side. 
+
+![Github project create](./images/gh2.png)
+
+* Repository Name: cloudtest
+* Description: Some awesome description
+* Public: Github repositories are public by default.  Private repos cost money. 
+* Initialize with a README is checked
+* Add a license: Select the apache 2 license.  
+
+Licenses are plentiful in software.  You're even allowed to make your own but the 
+Apache2 is widely recognized and if someone wants to use your code they may ask
+you to put this license in.  
+
+Once you are complete, select __Create Repository__ and you'll be directed to the
+repo.  
+
+![Github initial Project](./images/gh3.png)
+
 ### 2.1.3 Working with Git
+
+Now that we have the repository we are going to start working with it.  Let's first
+download the repo, or 'clone' it. 
+
+Inside the lab machine run the command: 
+
+```
+git clone <your repo>
+```
+Where ```<your repo>``` is the clone URL shown on the right side of the web page.  You can 
+click on the clipboard to do this.  
+
+As an example, if you wanted to get Vallard's cloudtest repo you would run:
+
+```
+git clone https://github.com/vallard/cloudtest.git
+```
+this will create a directory called cloudtest.  
+
+Typically people will have a directory where all code lives.  For example if you have a 
+Mac you might have a directory called ```~/Code``` and change to that directory before 
+you ever run ```git clone``` commands.  
+
+#### Make changes ####
+```
+cd cloudtest
+```
+Here we can edit the README.md file.  The 'md' in this case stands for markdown.  
+Markdown is a formatting language that is supposed to be more simple than 
+markup languages like HTML.  The syntax for Markdown files can be found
+[here](http://daringfireball.net/projects/markdown/syntax).  This lab in fact
+was written in markdown.  
+
+Let's edit the ```README.md``` file by opening it with ```vim``` or ```pico```.  
+
+Upon opening it, we can see that it looks as follows: 
+
+```
+# cloudtest
+This is a test project
+```
+
+Make some edits so that the file is different, either by adding a line, or
+changing the description line.  Then save and close the file.  
+
+Once saved run: 
+```
+git status
+```
+You'll see that git is tracking that this file has been changed but the 
+changes have not been committed.  Now commit the changes: 
+```
+git commit -am "made a change"
+```
+The 'made a change' preceeded by the ```-m``` flag gives the message of the commit
+so others can see what the general idea of your change was.  
+The ```-a``` flag signifies to commit all changed files. 
+
+So far all the changes have been made locally, but if we look at 
+github, nothing has changed upstream.  We will need to commit these changes to
+the master.  This is done by running: 
+```
+git push
+```
+You will be prompted for your Github user account and password.  Once you enter this
+changes will be pushed upstream. If two or more developers were working on the same
+code then the other developer would need to run ```git pull``` while in his local
+repo to sync to the latest changes. 
+
 
 ### 2.1.4 Branches with Git
 
