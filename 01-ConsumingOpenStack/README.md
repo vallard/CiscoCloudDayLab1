@@ -91,8 +91,11 @@ _NOTE: Make sure you leave the ```export``` in front of the definition_
 Setting these environment variables will allow your other programs to access the 
 APIs of the lab for all the excercises.  
 
-You can use vi or nano. If you want emacs installed then you should probably just stop
-using this lab right now.  
+You can use ```vi``` or ```nano``` to open the file: 
+
+```
+vi ~/.profile
+```
 
 [There's a nice 5 minute introduction](http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html)
 to vi that might help if you wish to learn that.  (recommended if you are not!)
