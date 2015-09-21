@@ -1,4 +1,4 @@
-# Module 2: Revision Control and Artifact Repositories
+# Module 2: Revision Control (Git) and Containers (Docker)
 
 * [2\.1 Git](#21-git)
   * [2\.1\.1 Sign up for Github](#211-sign-up-for-github)
