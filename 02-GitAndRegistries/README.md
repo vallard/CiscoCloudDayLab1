@@ -339,9 +339,24 @@ On the lab workstation run the commands:
 ```
 sudo docker search python
 ```
-This will show several docker containers you can download and use.   
+
+(Password is the same as your user account: ```Cisco.123```)
+
+This will show a list of docker containers you can download and use.   
+These can also be found by searching the [Docker Hub](https://hub.docker.com)
+You don't need to log in and you can search via the search bar
+on the top left.  
+
+![Docker Hub](./images/docker1.png)
 
 ### 2.2.2 Downloading Docker Images
+
+A quick way to get started with Docker is to download one of the smallest 
+```
+sudo docker run hello-world
+```
+This image will download (if it hasn't already) and run, flash a message
+stating its working and then terminate.  
 
 ### 2.2.3 Starting Docker Images
 
