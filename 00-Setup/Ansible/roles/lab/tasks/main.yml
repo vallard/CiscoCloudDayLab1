@@ -3,6 +3,6 @@
   docker: 
     image: "vallard/metaclient" 
     name: lab01 
+    priviliged: true  
     ports: 
       - "2222:22"
-    command: /usr/sbin/sshd -D
