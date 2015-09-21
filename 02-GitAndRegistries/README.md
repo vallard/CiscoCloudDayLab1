@@ -272,7 +272,59 @@ github repo.
 You'll now have your own copy of the entire lab including all the images,
 scripts, and documentation.  
 
+Clone the new repo unto your workstation using the git clone command:
+```
+git clone https://github.com/<your username>/CiscoCloudDayLab1.git
+```
+Now that you have the repo, let's make a change.  We'll sign the guestbook:
+
+```
+cd CiscoCloudDayLab1/Users
+echo "<your name> was here!" >> README.md
+```
+where ```<your name>``` is your git user ID.  
+
+When complete, commit and push the code changes: 
+
+``` 
+git commit -am "Added my username to the list of users"
+git push
+```
+
 ### 2.1.7 Pull Requests 
+
+In the previous exercise you forked a repo, then you made a change
+then you committed and pushed the code back into your repo.  
+
+Your repo exists as your own, but now you may want these changes to
+go back into the core project. This can be done by issuing a pull 
+request.  
+
+Navigating back to your own repository web page pull requests you will 
+see a pull request icon on the right hand side. 
+
+![pull request icon](./images/gh6.png)
+
+Click on this and then you can create a new Pull request by clicking
+on the Green button.  
+
+You'll then see a screen that has the changes you made.  Github
+allows you to tie these pull requests to issues.  
+
+Something we didn't cover is that if someone has an issue against
+your code, you can close it with a checkin with a message that
+says something like "close issue #361".  More info on this
+is [here.](https://help.github.com/articles/closing-issues-via-commit-messages/)
+
+You can also close issues with pull requests by putting comments
+in the pull request. 
+
+Let the instructor know when you have created your pull request.  
+He/She will already be notified by an email but just to make
+sure it works in real time, let them know. 
+
+Once the instructor approves the pull request you will see your
+code updated on the [core project page.](https://github.com/vallard/CiscoCloudDayLab1/tree/master/Users) 
 
 ## 2.2 Docker
 
