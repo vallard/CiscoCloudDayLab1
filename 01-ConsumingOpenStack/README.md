@@ -62,7 +62,7 @@ Click on the __ACCESS AND SECURITY__
 
 Navigate to the __API Access__ tab in the workpane and download the Openstack RC file. 
 
-![API Access ](images/d1.png "API Access")
+![API Access ](images/d2.png "API Access")
 
 This file contains all the environment variables we need to access the APIs.  Save this 
 file then open with a text editor to see what was set. 
