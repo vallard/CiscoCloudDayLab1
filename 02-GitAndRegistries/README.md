@@ -338,12 +338,16 @@ exercises to get familiar with containers.
 On the lab workstation run the commands: 
 ```
 sudo docker search python
+sudo docker search nginx
+sudo docker search rails
 ```
 
 (Password is the same as your user account: ```Cisco.123```)
 
 This will show a list of docker containers you can download and use.   
-These can also be found by searching the [Docker Hub](https://hub.docker.com)
+You can also search by visiting the [Docker Hub](https://hub.docker.com)
+With your web browser, visit the [Docker Hub](https://hub.docker.com)
+and search for another application of framework (Django, Wordpress, etc)
 You don't need to log in and you can search via the search bar
 on the top left.  
 
@@ -352,13 +356,49 @@ on the top left.
 ### 2.2.2 Downloading Docker Images
 
 A quick way to get started with Docker is to download one of the smallest 
+containers there is.  From the lab machine run: 
 ```
 sudo docker run hello-world
 ```
 This image will download (if it hasn't already) and run, flash a message
 stating its working and then terminate.  
 
+The docker ```pull``` command will download the image.  This will then 
+be stored on your local host.  When you issue the ```docker run``` command
+docker will look to see if the image is present and run it.  If the image
+is not present, it will download it and then run it.  
+
 ### 2.2.3 Starting Docker Images
+
+Let's try running a webserver.  Nginx is a good webserver to start
+with
+```
+sudo docker run --rm -it -p 80<user #>:80 --name nginx<user #> nginx
+```
+where ```<user #>``` is the number of your account.  
+E.g.: user03 would run the command:
+```
+sudo docker run --rm -it -p 8003:80 --name nginx03 nginx
+```
+
+This will run an interactive container on which you will be logged in.  
+The ```--rm``` flag tells docker to remove the container when it's done
+running. 
+The ```-it``` is actually two flags:  The ```-i``` for interactive and
+the ```-t``` for creating a terminal.  
+The ```-p 80<user #>:80``` tells docker to map port 80 of the container
+to the host port ```80<user #>```.  
+
+
+You can now start nginx up by running:
+```
+service nginx start
+```
+Try opening a web page to this service from your browser: ```http://<labip>:80<user #>```
+
+When you have finished verifying that your webserver is up, go back to the terminal
+and type ```exit``` to exit the running container.  
+
 
 ### 2.2.4 Volumes, Environment Variables
 
