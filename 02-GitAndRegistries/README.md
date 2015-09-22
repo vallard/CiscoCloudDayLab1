@@ -417,23 +417,23 @@ We stop containers by stopping them either via the name, or the id.  By default 
 do not give a container a name, then it will randomly generate a name.  Run the command
 
 ```
-docker ps
+sudo docker ps
 ```
 This will show you all of the running containers.  You may see other people's 
 containers running as well.  Please be kind, and don't clobber their stuff.  
 
 To stop your container we run:
 ```
-docker stop nginx<user #>
+sudo docker stop nginx<user #>
 ```
 Now to see all of the containers, including the stopped containers you run: 
 ```
-docker ps -a
+sudo docker ps -a
 ```
 This will show all the containers that are there.  We can remove your container 
 (not the image) by running: 
 ```
-docker rm nginx<user #>
+sudo docker rm nginx<user #>
 ```
 You could also remove the hello-world image by running ```docker rmi hello-world```.
 If there are people running it then you won't be able to remove it until the containers
@@ -453,7 +453,7 @@ On your lab workstation run the command:
 mkdir ~/html/
 cd ~/html
 wget https://raw.githubusercontent.com/vallard/CiscoCloudDayLab1/master/02-GitAndRegistries/html/index.html
-docker run -d -v `pwd`:/usr/share/nginx/html -p 80<user #>:80 --name nginx<user #> nginx
+sudo docker run -d -v `pwd`:/usr/share/nginx/html -p 80<user #>:80 --name nginx<user #> nginx
 ```
 
 The ```-v``` flag will mount a volume, specifically our current working directory, which has our 
@@ -472,8 +472,8 @@ volumes to instances.
 
 Stop your running container so that you are ready for the next exercise:
 ```
-docker stop nginx<user #>
-docker rm nginx<user #>
+sudo docker stop nginx<user #>
+sudo docker rm nginx<user #>
 ```
 
 #### Environment Variables
@@ -527,7 +527,7 @@ ADD index /usr/share/nginx/html
 Save this file and close it.  Now we can build this image. 
 
 ```
-docker build -t <yourname>/staticweb .
+sudo docker build -t <yourname>/staticweb .
 ```
 where ```<yourname>``` can be your docker hub account (if you have one) or 
 any old name if you don't wish to create one. 
@@ -537,7 +537,7 @@ All of the properties in the previous nginx container will be used.
 
 Let's run and test this new container:
 ```
-docker run -d -p 80<user #>:80 --name=<yourname> <yourname>/staticweb
+sudo docker run -d -p 80<user #>:80 --name=<yourname> <yourname>/staticweb
 ```
 
 Once again you should be able to access your container with its static 
@@ -551,14 +551,14 @@ You can upload this image to dockerhub.  First, go visit
 this is done, return back to your lab workstation and run the command: 
 
 ```
-docker push <yourname>/staticweb
+sudo docker push <yourname>/staticweb
 ```
 It will ask you for your login credentials and will upload it.  Note that
 the <yourname> must match your docker user ID.  If you didn't do that
 then change the name of your image to match your docker user ID by running
 the docker tag command:
 ```
-docker tag <originalname>/staticweb <newname>/staticweb
+sudo docker tag <originalname>/staticweb <newname>/staticweb
 ```
 Then you can redo the ```docker push``` command above. 
 
