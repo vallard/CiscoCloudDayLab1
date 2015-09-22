@@ -452,13 +452,116 @@ On your lab workstation run the command:
 ```
 mkdir ~/html/
 cd ~/html
+wget https://raw.githubusercontent.com/vallard/CiscoCloudDayLab1/master/02-GitAndRegistries/html/index.html
 docker run -d -v `pwd`:/usr/share/nginx/html -p 80<user #>:80 --name nginx<user #> nginx
 ```
 
+The ```-v``` flag will mount a volume, specifically our current working directory, which has our 
+newly grabbed ```index.html```.  Things in this volume will persist.  While a webpage
+shows reading to it, some containers will instead write data to volumes.  By mounting
+with the -v we ensure they persist.  That way if the container goes away, our 
+information will remain.  
 
+This is better demonstrated with a database as those persist across reboots. 
+In the [gist shown here](https://gist.github.com/vallard/5a7bcebb912e673ed60a#gitlab-example)
+you can see an example of how we created the gitlab container that uses
+a Postgres database.  The Postgres database mounts a volume (in this case
+```/opt/postgresql/data``` so that if the container is deleted, the data
+will persist.  This is analogous to how in openstack we mount persistent
+volumes to instances.  
 
+Stop your running container so that you are ready for the next exercise:
+```
+docker stop nginx<user #>
+docker rm nginx<user #>
+```
+
+#### Environment Variables
+
+The other examples you'll see in running containers are passing environment
+variables to the containers.  These environment variables can be 
+parsed and ran by the script that first runs when the container
+launches.  
+
+The [Gitlab example](https://gist.github.com/vallard/5a7bcebb912e673ed60a#gitlab-example)
+shows the database passwords and users that are sent when the postgres
+container first launches.  
 
 ### 2.2.5 Building a basic Container
+
+At this point we've been using containers that have been built by other people. 
+There are various ways you can get an image baked the way you want it:
+
+* You can take an existing image, make the changes, (like install packages) and 
+then run ```docker commit``` to save it.  
+* You can take a vanilla container, launch it and then customize it with things 
+like Ansible.  
+* You can create a Dockerfile and build it that way.  
+
+The first two approaches are not recommended for several reasons.  
+
+* Using ```docker commit``` gives you a blackbox from which no one will be able
+to reproduce.  This makes for bad infrastructure and doesn't adhere to the 
+'infrastructure as code' paradigm so many people are anxious to adopt.  
+
+* Using Ansible, Chef, Puppet, etc to update and make images in a usable state
+is also bad because it doesn't allow people to adopt an 'immutable infrastructure'
+design.  [Immutable infrastructure](http://chadfowler.com/blog/2013/06/23/immutable-deployments/)
+is described brilliantly in the previous link is not new, but many things like
+docker have made it possible to adopt it in the enterprise. 
+
+Let's now build a basic docker container using a Dockerfile.  
+
+Using your text editor create a new file called ```Dockerfile``` in your
+current directory. (should be the html directory from the last exercise)
+```
+vim Dockerfile
+```
+Inside this file let's past the following into this file:
+```
+FROM nginx
+MAINTAINER FirstName LastName "youremail@yourdomain.com"
+ADD index /usr/share/nginx/html
+```
+
+Save this file and close it.  Now we can build this image. 
+
+```
+docker build -t <yourname>/staticweb .
+```
+where ```<yourname>``` can be your docker hub account (if you have one) or 
+any old name if you don't wish to create one. 
+
+This will build a brand new container based on nginx that you can now run.  
+All of the properties in the previous nginx container will be used. 
+
+Let's run and test this new container:
+```
+docker run -d -p 80<user #>:80 --name=<yourname> <yourname>/staticweb
+```
+
+Once again you should be able to access your container with its static 
+website that you created.  Congratulations!  You built your first 
+container.  
+
+#### (Optional) Upload to the Docker Hub
+
+You can upload this image to dockerhub.  First, go visit 
+[DockerHub](https://hub.docker.com) and sign up for an account.  Once
+this is done, return back to your lab workstation and run the command: 
+
+```
+docker push <yourname>/staticweb
+```
+It will ask you for your login credentials and will upload it.  Note that
+the <yourname> must match your docker user ID.  If you didn't do that
+then change the name of your image to match your docker user ID by running
+the docker tag command:
+```
+docker tag <originalname>/staticweb <newname>/staticweb
+```
+Then you can redo the ```docker push``` command above. 
+
 
 ## 2.3 (Optional) Setting Git and Docker on your own laptop
 
