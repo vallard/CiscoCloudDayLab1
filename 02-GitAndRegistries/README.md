@@ -371,7 +371,7 @@ is not present, it will download it and then run it.
 ### 2.2.3 Starting Docker Images
 
 Let's try running a webserver.  Nginx is a good webserver to start
-with
+with.  From your lab machine run the command:
 ```
 sudo docker run --rm -it -p 80<user #>:80 --name nginx<user #> nginx
 ```
@@ -384,8 +384,10 @@ sudo docker run --rm -it -p 8003:80 --name nginx03 nginx
 This will run an interactive container on which you will be logged in.  
 The ```--rm``` flag tells docker to remove the container when it's done
 running. 
+
 The ```-it``` is actually two flags:  The ```-i``` for interactive and
 the ```-t``` for creating a terminal.  
+
 The ```-p 80<user #>:80``` tells docker to map port 80 of the container
 to the host port ```80<user #>```.  
 
@@ -399,6 +401,45 @@ Try opening a web page to this service from your browser: ```http://<labip>:80<u
 When you have finished verifying that your webserver is up, go back to the terminal
 and type ```exit``` to exit the running container.  
 
+When debugging containers we often run interactive containers like we just did.  But 
+when we run in production, we run them without logging into them.  Docker has a 
+```-d``` flag for this.  Containers will sometimes have a default command to run when
+they start up.  In the case of the nginx container, it by default will run the
+nginx websever.  Let's rerun our container in daemon mode by running the command: 
+
+```
+sudo docker run -d -p 8003:80 --name nginx03 nginx
+```
+This will start up the container and again you should be able to access it through your
+same web browser URL. 
+
+We stop containers by stopping them either via the name, or the id.  By default if you
+do not give a container a name, then it will randomly generate a name.  Run the command
+
+```
+docker ps
+```
+This will show you all of the running containers.  You may see other people's 
+containers running as well.  Please be kind, and don't clobber their stuff.  
+
+To stop your container we run:
+```
+docker stop nginx<user #>
+```
+Now to see all of the containers, including the stopped containers you run: 
+```
+docker ps -a
+```
+This will show all the containers that are there.  We can remove your container 
+(not the image) by running: 
+```
+docker rm nginx<user #>
+```
+You could also remove the hello-world image by running ```docker rmi hello-world```.
+If there are people running it then you won't be able to remove it until the containers
+are stopped and cleared.  Its important to distinguish between a container and a 
+container image.  A container image is just a running image.  The docker
+command is used to manage both of them. 
 
 ### 2.2.4 Volumes, Environment Variables
 
