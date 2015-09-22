@@ -443,6 +443,21 @@ command is used to manage both of them.
 
 ### 2.2.4 Volumes, Environment Variables
 
+Even though we talk a lot about stateless services the state must exist somewhere even 
+if it isn't tied specifically to the instance or container that runs.  Volumes are how
+we keep state in Docker containers.  
+
+Let's get a real web service up by making our own webpage and have the state displayed. 
+On your lab workstation run the command: 
+```
+mkdir ~/html/
+cd ~/html
+docker run -d -v `pwd`:/usr/share/nginx/html -p 80<user #>:80 --name nginx<user #> nginx
+```
+
+
+
+
 ### 2.2.5 Building a basic Container
 
 ## 2.3 (Optional) Setting Git and Docker on your own laptop
