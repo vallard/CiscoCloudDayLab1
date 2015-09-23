@@ -521,7 +521,7 @@ Inside this file let's past the following into this file:
 ```
 FROM nginx
 MAINTAINER FirstName LastName "youremail@yourdomain.com"
-ADD index /usr/share/nginx/html
+ADD index.html /usr/share/nginx/html/
 ```
 
 Save this file and close it.  Now we can build this image. 
@@ -565,4 +565,6 @@ Then you can redo the ```docker push``` command above.
 
 ## 2.3 (Optional) Setting Git and Docker on your own laptop
 
+Installing a workstation 
+[Download and install Git tools](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 [Download and install the Docker Toolbox](https://www.docker.com/toolbox)
