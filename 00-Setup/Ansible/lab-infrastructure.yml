@@ -4,15 +4,16 @@
   vars_files:
    - vars/metacloud_vars.yml
   tasks: 
-  - name: ensure there is a volume for storing data. 
-    os_volume: 
-      size: 40
-      display_name: lab_volume
-    register: vol
+    # create volume
+    #  - name: ensure there is a volume for storing data. 
+    #os_volume: 
+    #  size: 40
+    #  display_name: ci_volume
+    #register: vol
  
-  - name: "Debug"
-    debug: var=vol
-
+    #- name: "Debug"
+    #debug: var=vol
+    # create server
   - name: Ensure lab infrastructure is up
     os_server:
       name: "{{ item }}"
@@ -30,13 +31,13 @@
   - name: Wait for the post install script to finish
     pause: minutes=2
     when: result|changed
-
-  - name: Ensure volume is attached to host. 
-    os_server_volume: 
-      state: present
-      server: result.results[0].openstack.name
-      volume: 
-
+    # attach volume to host
+    #  - name: Ensure volume is attached to host. 
+    #os_server_volume: 
+    #  state: present
+    #  server: result.results[0].openstack.name
+    #  volume: 
+    # add lab machine to the inventory
   - name: Add lab machines to the inventory
     add_host: hostname={{item.openstack.public_v4}} groupname=infra
     with_items: result.results
@@ -46,5 +47,5 @@
   hosts: infra
   roles: 
     - filesystem
-    - gitlab
-    - jenkins
+      #- gitlab
+      #- jenkins
