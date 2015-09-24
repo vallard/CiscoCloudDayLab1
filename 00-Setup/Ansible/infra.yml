@@ -10,6 +10,9 @@
     #  size: 40
     #  display_name: ci_volume
     #register: vol
+
+# TODO: tasks for security groups: 8080
+
  
     #- name: "Debug"
     #debug: var=vol
@@ -48,5 +51,5 @@
   roles: 
     - filesystem
     - registry
-      #- gitlab
-      #- jenkins
+    - gitlab
+    - jenkins
