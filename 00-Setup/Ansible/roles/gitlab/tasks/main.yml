@@ -1,0 +1,20 @@
+---
+- name: Ensure Redis is up for Gitlab
+  docker: image="ci:5000/sameersbn/redis:latest" volumes=/vol/redis/data:/var/lib/redis name=redis
+
+- name: Ensure PostGresql is up
+  docker: image="ci:5000/sameersbn/postgresql:latest" volumes=/vol/postgresql/data:/var/lib/postgresql env="DB_NAME=gitlabhq_production,DB_USER=gitlab,DB_PASS={{gitlab_db_password}}" name=postgresql
+  register: result
+
+#- name: Get IP address of docker0
+#  raw: "ip addr | grep docker0 | awk '/inet/{print $2}' | awk -F/ '{print $1}'"
+#  register: ip_address
+#
+#- debug: msg="docker0 ip address is {{ip_address.stdout }}"
+
+- name: Wait for a few seconds if the postrgres just came up...
+  pause: seconds=5
+  when: result|changed
+
+- name: Ensure Gitlab is up
+  docker: image="ci:5000/sameersbn/gitlab:latest" volumes=/vol/gitlab/data:/home/git/data env="DB_TYPE=postgres,GITLAB_PORT=10080,GITLAB_SSH_PORT=10022" links="postgresql:postgresql,redis:redisio" ports=10022:22,10080:80 name=gitlab

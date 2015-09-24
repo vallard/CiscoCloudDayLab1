@@ -1,0 +1,18 @@
+--- 
+# before running this task the first time you'll have to run
+# fdisk on on the filesystem to create /dev/vdb1
+# make sure that the block filesystem is mounted. 
+- name: Create filesystem on device. 
+  sudo: true
+  filesystem: fstype=ext4 dev=/dev/vdb1
+
+- name: ensure filesystem is mounted. 
+  sudo: true
+  mount: name=/vol fstype=ext4 src=/dev/vdb1 state=mounted
+
+# probably need to write a file into /usr/lib/system/vol.mount
+# or /etc/systemd/system to make this persist. 
+#
+- name: make volume mounts persistent
+  sudo: true
+  copy: src=../files/vol.mount dest=/etc/systemd/system/

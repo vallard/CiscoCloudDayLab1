@@ -1,0 +1,8 @@
+[Unit]
+Description=Mount vol to /vol
+DefaultDependencies=no
+
+[Mount]
+What=/dev/vdb1
+Where=/vol
+Type=ext4

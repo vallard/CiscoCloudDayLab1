@@ -25,7 +25,7 @@
       meta: 
         ansible: "infra"  
     with_items: 
-      - infra01
+      - ci
     register: result
        
   - name: Wait for the post install script to finish
@@ -47,5 +47,6 @@
   hosts: infra
   roles: 
     - filesystem
+    - registry
       #- gitlab
       #- jenkins

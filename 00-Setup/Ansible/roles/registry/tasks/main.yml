@@ -1,0 +1,6 @@
+---
+# just downloads the registry and runs it. 
+# docker -v /vol/docker-registry:/docker -e STORAGE=local -e
+# STORAGE_PATH=/docker -p 5000:5000 
+- name: Ensure Docker Registry is up.
+  docker: image="registry:latest" volumes=/vol/docker-registry:/docker env="STORAGE=local,STORAGE_PATH=/docker" ports=5000:5000 name=registry
