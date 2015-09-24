@@ -4,4 +4,4 @@
   sudo: yes
 
 - name: Ensure Jenkins is up
-  docker: image="jenkins" volumes=/vol/jenkins_home:/var/jenkins_home name=jenkins ports=8080:8080,50000:50000 
+  docker: image="ci:5000/jenkins" volumes=/vol/jenkins_home:/var/jenkins_home name=jenkins ports=8080:8080,50000:50000 
