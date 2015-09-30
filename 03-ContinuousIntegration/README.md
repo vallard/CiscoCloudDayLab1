@@ -33,8 +33,8 @@ gitlab.
 After logging in you will create a new project so that you can upload code
 to this source control repository. 
 
-Create a new project by clicking the green _New Project_ button. Call it
-```web```
+Create a new project by clicking the green _New Project_ button. Call it _web_
+
 
 You can leave all the default settings and give it a brief description. 
 
