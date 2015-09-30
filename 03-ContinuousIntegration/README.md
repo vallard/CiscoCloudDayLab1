@@ -59,7 +59,7 @@ after completing the next step.
 
 #### 3.1.2.1 Generate SSH key
 
-log back into the lab machine and generate a new SSH key to be used by 
+Log back into the lab machine and generate a new SSH key to be used by 
 this lab user. Run the command:
 
 ```
@@ -74,7 +74,7 @@ key to the Gitlab web page we have open now.
 
 ```
 cat ~/.ssh/id_rsa.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGEhfKSB+jkR/+0oEH5o+x8DHw9VpZi3zSK28+dVf1coatgQXh5pNg2V/lhN8L1D1N5pJUPftt0MWVXlzRvmzOfhmQ5MMrS+ICWUdeKmGpFZOI/kCZRwbJraDbcwPoevlfyPPEOSg8soeKrLXMPqXAYHE06eF7FK2m9XcvJbtO1P+bFq6YCBh8zDd69xsWtB2GuQwZ2rDy4rPaqFO667NHUzJTiR0mJxiB91xg8UTHRRCjpXluFyeF6i1uz/qaa7pDwlxoLvg5sHfR4M6emYQ9UOY3IQH35gF2Co6k6uaAgDCCWBmcSCIIpTyPrUHtKbKmgfHdmQBehUQ5iCneczpr user06@7dcd05b736f8
+... < your key >
 ```
 Copy and paste this into the browser.  
 
@@ -86,8 +86,51 @@ Clicking 'Add Key' should save the key into your account.
 
 ## 3.1.3 Clone Repository
 
-From the left side menu select _Back to dashboard_
+* From the left side menu select _Back to dashboard_
+
+* From the projects menu select your _web_ project.  You will then be taken
+to a page that has information on how to start up the project.  
+
+![project web page](./images/gl07.png)
+
+At this point we are going to take a public repository that already has
+code and copy it into our newly created private repo.  This is done by
+executing the following: 
+
+```
+git clone https://github.com/vallard/go-webapp.git
+cd go-webapp
+```
+Now we want to change the remote origin from Github to our local Gitlab
+account.  To do this, we first configure some global settings: 
+```
+git config --global user.name "<gitlab username>"
+git config --global user.email "<gitlab email>"
+```
+Where ```<gitlab username>``` is the user name you signed into Gitlab with. 
+
+Now, we will remove the Github origin
+```
+git remote remove origin
+```
+Then we will add the Gitlab origin and commit the code up:
+```
+git remote add origin ssh://git@ci:10022/vallard/web.git
+git add . 
+git commit
+git push -u origin master
+```
+Refreshing your webpage you should see some of the new content. 
+
+![new web application](./images/gl08.png)
+
+You'll notice our gitlab is configured to show ```localhost```.  For access
+from our lab workstations we can simply replace ```localhost``` with ```ci```
+
+Now that we have our application into Gitlab and we can commit and pull
+changes.  Let's hook it up to Jenkins so we can deploy services. 
 
 ## 3.2 Configure Jenkins
 
 
+ 

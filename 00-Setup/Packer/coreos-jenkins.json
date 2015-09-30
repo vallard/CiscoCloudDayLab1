@@ -1,0 +1,24 @@
+{
+  "builders" : [{
+    "type": "openstack",
+    "ssh_username": "core", 
+    "image_name": "coreos-jenkinslave",
+    "source_image": "4d723f4e-1cd0-4521-ae77-117a9cd18d24",
+    "use_floating_ip": "true",
+    "floating_ip": "38.84.67.209",
+    "flavor": "5"
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "sleep 30",
+      "mkdir /home/core/java",
+      "cd /home/core/java",
+      "wget -O java.tar.gz http://javadl.sun.com/webapps/download/AutoDL?BundleId=83376",
+      "tar xzvf java.tar.gz",
+      "rm java.tar.gz",
+      "rm /home/core/.bashrc",
+      "echo 'export PATH=$PATH:/home/core/java/jre1.7.0_51/bin/' > /home/core/.bashrc"
+    ]
+  }]
+}
