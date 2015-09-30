@@ -142,11 +142,20 @@ JSON = Javascript Object Notation.  JSON is great because its compact and easy t
 _Note:  If you get something that looks like an error please check that your environment 
 variables are set up correctly by going through section 1.2._
 
+It is also nice to 'pipe' the output of this command to a json formatting
+tool.  Python has one called json.tool.  Call the previous command again
+as follows: 
+```
+curl $OS_AUTH_URL | pythn -m json.tool
+```
+
+This gives you something a little more readable.  
+
 You can also request a token to do other openstack commands using: 
 
 ```
 curl -d '{"auth":{"passwordCredentials":{"username": "'"$OS_USERNAME"'", "password": "'"$OS_PASSWORD"'" }}}' \
--H "Content-type: application/json" -X POST $OS_AUTH_URL/tokens}}} | python -m json.tool
+-H "Content-type: application/json" -X POST $OS_AUTH_URL/tokens | python -m json.tool
 ```
 _Note the double quotes around the OS variables.  This is to ensure these variables are passed to the curl command._
 
@@ -262,13 +271,13 @@ it is launched and the private key we will download and use to log into the inst
 Run the command: 
 ```
 nova keypair-add <name>key | tee <name>key.pem
-chomd 600 <name>key.pem
+chmod 600 <name>key.pem
 ```
 Where <name> is your name, or some amazingly distinguished unique name that you will know is
 yours.  
 
-This command will generate the output of the private key. The ```tee`` command is a shell
-command that will pipe the key output to a file called ```<name>key.pem```
+This command will generate the output of the private key. The ```tee``` command is a shell
+command that will pipe the key output to a file called ```<name>key.pem```.
 
 Running the command 
 
@@ -276,7 +285,7 @@ Running the command
 nova keypair-list
 ```
 
-will show you all the keys in your system.  You can delete the key you made later by running
+will show you all the keys in your system.  If you made a mistake, you can delete the key you made and run the command again.  
 ```
 nova keypair-delete <name>key
 ```

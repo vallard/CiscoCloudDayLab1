@@ -35,3 +35,7 @@ This module talks about creating the application delivery pipeline.
 Users get hands on experience with using Jenkins with the tools discussed 
 in the previous modules. 
 
+
+## Items required by instructor
+
+* Ensure there is an ubuntu image available for the students to boot.  This version of the lab uses an image called ```ubuntu-14.04-server```.  This should be changed when the lab first starts depending on the environment.  (This is in [https://github.com/vallard/CiscoCloudDayLab1/tree/master/01-ConsumingOpenStack#146-create-a-new-instance](section 1.4.6))
