@@ -346,6 +346,9 @@ the Horizon dashboard that Metapod provides.
 There are other clients that you can experiment with if you have time
 including the cinder and keystone clients.
 
+_Be sure to log out of the instance you just created so as not to confuse
+which server you are working on for the rest of the sections!_
+
 ## 1.5 Creating your own Python Commands
 
 The python client contain libraries that can also be used by our own
@@ -415,6 +418,7 @@ and we will edit it.
 * Enter an image ID.  You may need to run ```nova image-list``` to access one. Note, make
 sure this is the image ID and not the image name. 
 * Enter your key name.  This is the key name you used in a previous exercise. 
+* Change the ```name``` from ```ansible-server``` to something unique. 
 
 Notice that the script will also use environment variables.  In Ansible
 2.0 these are not required and picked up automatically with the new
@@ -458,18 +462,19 @@ Save the changes and close the file.
 
 You can now run the Heat stack by running: 
 ```
-$ heat stack-create mytest --template-file=./heat-wget.yml
+$ heat stack-create mytest<user id> --template-file=./heat-wget.yml
 ```
 The output will look similar to: 
 ```
 +--------------------------------------+------------+--------------------+----------------------+
 | id                                   | stack_name | stack_status       | creation_time        |
 +--------------------------------------+------------+--------------------+----------------------+
-| 4b55cc3a-03b7-49e6-9ecb-69862fe237a3 | mytest     | CREATE_IN_PROGRESS | 2015-09-15T23:42:07Z |
+| 4b55cc3a-03b7-49e6-9ecb-69862fe237a3 | mytest06     | CREATE_IN_PROGRESS | 2015-09-15T23:42:07Z |
 +--------------------------------------+------------+--------------------+----------------------+
 ```
 
-Running ```nova list``` will show the instance that it created.  In
+Running ```nova list``` will show the instance that it created.  The name
+will be mytest<id> followed by some random characters.  In
 this example we've only done a small amount of what Heat can do.  It 
 can also create volumes and assign floating IP addresses.  
 
