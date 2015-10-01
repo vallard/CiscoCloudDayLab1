@@ -39,3 +39,10 @@ in the previous modules.
 ## Items required by instructor
 
 * Ensure there is an ubuntu image available for the students to boot.  This version of the lab uses an image called ```ubuntu-14.04-server```.  This should be changed when the lab first starts depending on the environment.  (This is in [https://github.com/vallard/CiscoCloudDayLab1/tree/master/01-ConsumingOpenStack#146-create-a-new-instance](section 1.4.6))
+
+* Create a jenkins account for gitlab.  This can use the same key as the jenkins master to jenkins slave.  
+  * The key for the jenkins gitlab account should be the one that is used 
+
+* Configure Jenkins as specified in this [blog post]( http://benincosa.com/?p=3352 ). 
+
+

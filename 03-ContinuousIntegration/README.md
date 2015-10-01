@@ -127,9 +127,105 @@ You'll notice our gitlab is configured to show ```localhost```.  For access
 from our lab workstations we can simply replace ```localhost``` with ```ci```
 
 Now that we have our application into Gitlab and we can commit and pull
-changes.  Let's hook it up to Jenkins so we can deploy services. 
+changes. 
+
+### 3.1.4 Add Jenkins User
+
+Since your project is private, only people you give permission can access your 
+code.  We want our robot (jenkins) to be able to access this code to perform testing
+on it when there are code changes.  
+
+The jenkins gitlab user was created previously for you.  This is a user with his own
+keys that allow him to authenticate into the system. We now need to grant this user
+access to our project.  
+
+* From the Project dashboard, select your project.  
+* Select _Members_ from the sidebar. 
+* Select _Add Members_ from the green button and add the Jenkins user. 
+
+![Add Jenkins User](./images/gl09.png)
 
 ## 3.2 Configure Jenkins
 
+Now that our project is up and ready we need to tell Jenkins what to do on changes.  
+
+Sign into Jenkins using the URL that your instructor gives you. 
+
+![Jenkins Home Page](./images/j01.png)
+
+* Click on _create new jobs_ or add a new job from the left side pane by selecting _New Item_.  Give the job a name of your choice.  This can 
+be your name or user ID. 
+
+* The job type should be _Freestyle project_
+
+* Click _OK_ 
+
+![Jenkins New Job](./images/j02.png)
+
+
+### 3.2.1 Configure Git information
+
+* Select the button __Restrict where this project can be run__ for the lable expression select
+_coreos-slave_. 
+
+![Jenkins restrict](./images/j03.png)
+
+* Under _Source Code Management_ select _Git_ and fill in the repository information
+  * Repository URL: ```ssh://git@ci:10022/<yourname>/web.git``` where ```<yourname>``` is your user id. 
+  * Credentials: There should be a jenkins credentials to select from. 
+ 
+![Jenkins SVN ](./images/j04.png)
+
+* Under _Build Triggers_ select _Build when a change is pushed to GitLab. And select the sub topics to be selected too. 
+
+![Jenksins Triggers](./images/j05.png)
+
+### 3.2.2 Configure Build Environment
+
+* Select OpenStack Instance Creation and select the only available Cloud Name as well as the only selectable Template from the list. Specify the number of Instances to be 1. 
+
+* Select OpenStack Single-Use Slave
+
+![Jenkins Build Environment](./images/j06.png)
+
+### 3.2.3 Configure Build Rules
+
+The bot is now ready to grab code from Git when it is updated and put it on a slave (create a new Metapod instance).  Now when it puts it on the new instance, we have to tell the bot what to do. 
+
+This part will be different for different workloads that we have.  The most useful will be to run a suite of tests against the newly minted code.  Testing languages differ depending on which language you are using.  
+
+To start things off, just to make sure we have a working environment, let's just execute a simple shell command.  
+
+Select _Add build step_ and select _Execute shell_ from the list of options.  We're just going to run a simple ```ls -l``` command at the prompt to see if it works.  
+
+![Jenkins Build ls -l](./images/j07.png)
+
+Save your changes below with the blue button. 
+
+## 3.3 Test that our CI works. 
+
+Let's test that our tests actually work!  
+
+* Go to your workstation and change into the working directory of the code.  Make a change to the ```README.md``` file by adding a line or deleting a line.  Save the changes and exit the file.  
+
+* Commit the changes and push them up to GitLab
+
+```
+git commit -am "I made a change"
+git push
+```
+
+* Check the Jenkins screen and the Metapod screen to see that a new instance is created.  It may take a few seconds for Jenkins to start processing the build. 
 
  
+![Jenkins Building](./images/j08.png)
+
+* Once the build begins and the new instance is created, you can view the console output by selecting the build. 
+
+![Jenkins Console Output](./images/j09.png)
+
+## 3.4 Conclusion
+
+If your build we successful, congratulations!  You just set up the infrastructure for continuous integration.  Everytime the code is checked in, the bot takes it and runs specified tests against it. 
+
+
