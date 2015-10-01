@@ -1,0 +1,37 @@
+{
+  "_floating_ip_pool": "demo1-1017",
+  "builders" : [{
+    "type": "openstack",
+    "ssh_username": "core", 
+    "image_name": "coreos-jenkinslave",
+    "source_image": "4d723f4e-1cd0-4521-ae77-117a9cd18d24",
+    "use_floating_ip": "true",
+    "floating_ip": "38.84.67.209",
+    "flavor": "5"
+  },
+  {
+    "type": "amazon-ebs",
+    "region": "us-west-2",
+    "ssh_username": "core", 
+    "ami_name": "coreos-jenkinsslave {{ timestamp }}",
+    "source_ami": "ami-ef8b90df", 
+    "instance_type": "t1.micro"
+  }
+],
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "sleep 30",
+      "mkdir /home/core/java",
+      "cd /home/core/java",
+      "wget -O java.tar.gz http://javadl.sun.com/webapps/download/AutoDL?BundleId=83376",
+      "tar xzvf java.tar.gz",
+      "rm java.tar.gz",
+      "rm /home/core/.bashrc",
+      "echo 'export PATH=$PATH:/home/core/java/jre1.7.0_51/bin/' > /home/core/.bashrc",
+      "mkdir /home/core/.ssh",
+      "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpXereiNOhRt/Z7ZIYSjT68QUsp34lBqt2KnSMMgoj72bCiSaWziTpxM/RW2zZYeEtM8WDRS4idrLZRhTEJljPuTsuYokYx4kz4IZ7c6Ji7yzlriUci9ghror/neSiuPxteYTP2dUOGar+PUs2g6uN1qngw9EKlkwj8bWVHvTtmBqrqsRpWVAWRwgqKnWcbwboybz8mFxz1hBK7nGahtQ9+5/hCW4Pgky8xgdZffNNxzo562oV5ggI/1RewhA8Ve5xFgQSNh9qUk3O5Nj3sv8EkaLo1OG88kD2ieruI0+ayTOkUQBTM5mT1q7plQH62+lsMSOd70p39GUXSyk9G7mD' >/home/core/.ssh/authorized_keys",
+      "chmod 600 /home/core/.ssh/authorized_keys"
+    ]
+  }]
+}
