@@ -117,7 +117,6 @@ Then we will add the Gitlab origin and commit the code up:
 ```
 git remote add origin ssh://git@ci:10022/vallard/web.git
 git add . 
-git commit
 git push -u origin master
 ```
 Refreshing your webpage you should see some of the new content. 
