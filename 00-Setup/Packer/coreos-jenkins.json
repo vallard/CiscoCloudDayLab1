@@ -1,4 +1,5 @@
 {
+  "_floating_ip_pool": "demo1-1017",
   "builders" : [{
     "type": "openstack",
     "ssh_username": "core", 
@@ -7,7 +8,16 @@
     "use_floating_ip": "true",
     "floating_ip": "38.84.67.209",
     "flavor": "5"
-  }],
+  },
+  {
+    "type": "amazon-ebs",
+    "region": "us-west-2",
+    "ssh_username": "core", 
+    "ami_name": "coreos-jenkinsslave {{ timestamp }}",
+    "source_ami": "ami-ef8b90df", 
+    "instance_type": "t1.micro"
+  }
+],
   "provisioners": [{
     "type": "shell",
     "inline": [
