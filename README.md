@@ -45,4 +45,4 @@ in the previous modules.
 
 * Configure Jenkins as specified in this [blog post]( http://benincosa.com/?p=3352 ). 
 
-
+* Ensure the Docker agent is running on the Docker image vallard/metaclient for users.  
