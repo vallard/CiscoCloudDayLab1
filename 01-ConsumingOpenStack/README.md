@@ -146,7 +146,7 @@ It is also nice to 'pipe' the output of this command to a json formatting
 tool.  Python has one called json.tool.  Call the previous command again
 as follows: 
 ```
-curl $OS_AUTH_URL | pythn -m json.tool
+curl $OS_AUTH_URL | python -m json.tool
 ```
 
 This gives you something a little more readable.  
@@ -247,6 +247,8 @@ and get the same results.
 OpenStack tries to stick with the CRUD model, so for most subcommands there is a ```-show```, ```-delete```
 , and ```-list``` command. 
 
+What is[CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)?
+
 ### 1.4.4 Show OpenStack Images
 
 ```
@@ -262,6 +264,7 @@ environments will make their own.
 
 Find the ubuntu image ```ubuntu-14.04-server``` as this is what we'll use.  
 
+
 ### 1.4.5 Generate a Keypair
 
 In order to log into an instance that we will create we need to make a keypair.  The Keypair 
@@ -273,7 +276,7 @@ Run the command:
 nova keypair-add <name>key | tee <name>key.pem
 chmod 600 <name>key.pem
 ```
-Where <name> is your name, or some amazingly distinguished unique name that you will know is
+Where ```<name>``` is your name, or some amazingly distinguished unique name that you will know is
 yours.  
 
 This command will generate the output of the private key. The ```tee``` command is a shell
@@ -290,6 +293,8 @@ will show you all the keys in your system.  If you made a mistake, you can delet
 nova keypair-delete <name>key
 ```
 
+_Note that if you lose the private key, you will never be able to log into your instances again.  It can not
+be recovered.  So make sure you save it the first time!  If you lose it, delete the keypair and use one you know!_
 ### 1.4.6 Create a new instance
 
 Run the following command to create a new instance
@@ -395,10 +400,20 @@ run common tasks like install a package or provision an instance.
 
 ### 1.6.1 Get Sample Ansible
 
-Ansible is already set up on the workstation.  Let's download some playbooks that
+Ansible is already set up on the workstation.  Ansible is a framework for running
+automated workflows on a system.  Ansible does this with the concept of 
+_playbooks_.  A playbook is a set of scripts or actions that should be executed on 
+a host.  The _playbooks_ are designed to be idempodent.  Meaning that it declares the
+state it wants the system to be in.  When the playbook is run, if the system is not in
+that state, the actions are run.  If the system is already in a good state, it will leave
+it alone.  This means that you can always safely run the playbooks without fear of taking
+the system down.  
+
+Let's download some playbooks that
 are mostly written that we can use.  On your lab machine run the command: 
 
 ```
+cd ~/
 git clone https://github.com/vallard/COPC-API-Examples.git
 ```
 
@@ -409,7 +424,7 @@ This will clone several examples that we may use later on.
 Change to the directory where Ansible scripts are laid out for you.  
 
 ```
-cd COPC-API-Examples/03-Ansible/
+cd ~/COPC-API-Examples/03-Ansible/
 ```
 
 Here you will find a playbook called copc-one.yml.  Open this file 
@@ -462,7 +477,7 @@ Save the changes and close the file.
 
 You can now run the Heat stack by running: 
 ```
-$ heat stack-create mytest<user id> --template-file=./heat-wget.yml
+$ heat stack-create mytest<user id> --template-file ./heat-wget.yml
 ```
 The output will look similar to: 
 ```

@@ -1,5 +1,5 @@
 {
-  "_floating_ip_pool": "demo1-1017",
+  "_floating_ip_pool": "demo1",
   "builders" : [{
     "type": "openstack",
     "ssh_username": "core", 
