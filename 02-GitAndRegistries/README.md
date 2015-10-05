@@ -130,6 +130,25 @@ You'll see that git is tracking that this file has been changed but the
 changes have not been committed.  Now commit the changes: 
 ```
 git commit -am "made a change"
+
+You may get an error if you are working with git for the first time, something like:
+++
+user09@f3f2e1b:~/Metacloud-test$ git commit -am "kshah changes"
+
+*** Please tell me who you are.
+
+Run
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+++
+
+Go ahead and run git config commands above and then continue onto below.
+
+
 ```
 The 'made a change' preceeded by the ```-m``` flag gives the message of the commit
 so others can see what the general idea of your change was.  
