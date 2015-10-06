@@ -392,12 +392,12 @@ is not present, it will download it and then run it.
 Let's try running a webserver.  Nginx is a good webserver to start
 with.  From your lab machine run the command:
 ```
-sudo docker run --rm -it -p 80<user #>:80 --name nginx<user #> nginx
+sudo docker run --rm -it -p 80<user #>:80 --name nginx<user #> nginx /bin/bash
 ```
 where ```<user #>``` is the number of your account.  
 E.g.: user03 would run the command:
 ```
-sudo docker run --rm -it -p 8003:80 --name nginx03 nginx
+sudo docker run --rm -it -p 8003:80 --name nginx03 nginx /bin/bash
 ```
 
 This will run an interactive container on which you will be logged in.  
