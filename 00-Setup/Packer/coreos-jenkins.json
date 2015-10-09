@@ -1,10 +1,11 @@
 {
   "_floating_ip_pool": "demo1-1017",
+  "_demo1_source_image": "4d723f4e-1cd0-4521-ae77-117a9cd18d24",
   "builders" : [{
     "type": "openstack",
     "ssh_username": "core", 
     "image_name": "coreos-jenkinslave-{{ timestamp }}",
-    "source_image": "4d723f4e-1cd0-4521-ae77-117a9cd18d24",
+    "source_image" : "",
     "use_floating_ip": "true",
     "floating_ip": "38.84.67.209",
     "flavor": "5"
