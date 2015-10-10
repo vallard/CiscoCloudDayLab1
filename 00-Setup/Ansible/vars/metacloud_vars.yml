@@ -1,8 +1,7 @@
 ---
-keypair: gravy
+keypair: t4
 security_group: default
-coreos_image: CoreOS717
-m1large: 3
-#floating_ip_pool: "trial2-3003"
-floating_ip_pool: "demo1-1017"
+coreos_image: CoreOS766
+m1large: 712abf46-5cb6-4cab-a2ad-b5415e6190dd
+floating_ip_pool: "nova"
 

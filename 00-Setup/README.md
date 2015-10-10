@@ -106,8 +106,50 @@ Once all the changes are done, you should be able to launch your images:
 packer build coreos-jenkins.json
 ```
 
+## 4.  Build lab machines
 
+### 4.1 Update Environments files
 
+In the Ansible directory there is a /vars/ file that has values that should be changed to 
+match the environment you are in: 
+
+```
+keypair: t4
+security_group: default
+coreos_image: CoreOS766
+m1large: 712abf46-5cb6-4cab-a2ad-b5415e6190dd
+floating_ip_pool: "nova"
+```
+
+### 4.2 Update the Inventory File
+
+In ./Ansible/inventory/openstack_inventory.py there is a line: 
+```
+OS_NETWORK_NAME = 'demo1-1017'
+```
+Change to be your network.  You can see this by running nova list and noting the network name of the instance. 
+
+### 4.3 Update the keypair
+
+In ./Ansible/inventory/hosts update the keypair to be the location of your keypair.  There are 2 places
+to make this change. 
+
+```
+ansible_ssh_private_key_file = ~/.ssh/t4.pem
+```
+
+### 4.4 Run Ansible Playbook
+
+```
+ansible-playbook lab-machines.yml
+```
+This script can take a while as it installs an instance then downloads a container and runs it. 
+
+### 4.5 Update the Security Group
+
+Make sure the security group for the lab machine enables the following ports: 
+* 22
+* 2222
 
 ## Usage
 
