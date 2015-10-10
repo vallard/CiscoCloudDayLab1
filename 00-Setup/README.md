@@ -155,10 +155,22 @@ Make sure the security group for the lab machine enables the following ports:
 
 Log into the lab machine and ensure you can do a docker command: 
 ```
-nova ssh -p 2222 user01@lab01
-sudo docker images
+ssh -p 2222 user01@<ip address of lab server>
+sudo docker ps
 ```
 The password for all lab accounts is ```Cisco.123```
+
+If that fails, restart it by logging into the machine (not port 2222) killing the docker image and then 
+rerunning the ansible script: 
+```
+nova ssh -i ~/.ssh/<yourkey>.pem core@lab01
+docker stop lab01
+docker rm lab01
+exit
+ansible-playbook lab-machines.yml # this command from your laptop
+```
+
+This time, it shouldn't take as long to run. 
 
 ## Usage
 
