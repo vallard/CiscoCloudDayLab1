@@ -1,14 +1,14 @@
 {
-  "_floating_ip_pool": "demo1-1017",
+  "_floating_ip_pool": "demo",
   "_demo1_source_image": "4d723f4e-1cd0-4521-ae77-117a9cd18d24",
   "builders" : [{
     "type": "openstack",
     "ssh_username": "core", 
     "image_name": "coreos-jenkinslave-{{ timestamp }}",
-    "source_image" : "",
+    "source_image" : "2997fcd0-bc80-4be4-9f80-580e253f7379",
     "use_floating_ip": "true",
-    "floating_ip": "38.84.67.209",
-    "flavor": "5"
+    "floating_ip": "74.201.203.85",
+    "flavor": "712abf46-5cb6-4cab-a2ad-b5415e6190dd"
   }
 ],
   "provisioners": [{
