@@ -151,6 +151,15 @@ Make sure the security group for the lab machine enables the following ports:
 * 22
 * 2222
 
+### 4.6 Make sure Docker is running
+
+Log into the lab machine and ensure you can do a docker command: 
+```
+nova ssh -p 2222 user01@lab01
+sudo docker images
+```
+The password for all lab accounts is ```Cisco.123```
+
 ## Usage
 
 The infra.yml requires some manual work while I wait for Ansible to 
