@@ -172,23 +172,59 @@ ansible-playbook lab-machines.yml # this command from your laptop
 
 This time, it shouldn't take as long to run. 
 
-## Usage
+## 5. Lab Infrastructure
 
-The infra.yml requires some manual work while I wait for Ansible to 
-fix their 2.0 stuff to work with metapod.  
+This is the part of the lab that hosts jenkins and gitlab. 
 
-* You have to create your own volume and mount it to the instance and
-format it as well.  Doing an ```fdisk``` can make this happen.  
+#### 5.1 Mount a volume. 
 
-* Initial images need to be downloaded to the local registery (described below)
+Ansible doesn't do this yet. Create a 40GB volume in the metapod window.
 
-## Initial Registry Images. 
+![create volume](./images/vol.png)
+
+Comment out all the rules in the ```infra.yml``` flie and then run the program. 
+
+This will create an instance.  While this is happening, mount the volume to the
+instance. 
+
+![attach volume](./images/vol2.png)
+
+
+Once this is attached log into the server and create a filesystem on it. 
+```
+nova ssh -i ~/.ssh/t4.pem core@ci
+sudo fdisk -l
+sudo fdisk /dev/vdb
+n
+p
+[enter]
+[enter]
+[enter]
+w
+exit
+```
+
+#### 5.2 Registry
+
+
+Uncomment the filesystem and registry role in the ansible playbook and and re-run the playbook:
+```
+ansible-playbook infra.yml
+```
+
+Log back into the ci machine and make sure the registry is running.  If it is not remove the registry and rerun 
+the ansible script. (Yes, I know this is horrible that you have to keep rerunning it.)
+
+
+#### 5.3 Initial Registry Images. 
 
 The infra.yml brings up a machine called ```ci```.  All the systems provisioned
 in this lab are programmed to allow insecure docker communication to ```ci```. 
 
-They expect several docker images to be there.  For each of the following
-images you need to run: 
+They expect several docker images to be there.  
+
+Log back into the ci machine.  We will need to download some images and place them 
+in the public repository.  The commands will need to do something like the below:
 
 ```
 docker pull <image>
@@ -196,10 +232,47 @@ docker tag <image> ci:5000/<image>
 docker push ci:5000/<image>
 ```
 
-The images are: 
+The images we need are:
 
 * jenkins
 * nginx
 * sameersbn/redis
 * sameersbn/postgresql
 * sameersbn/gitlab
+
+The following script will do this for you:
+```
+for i in jenkins nginx sameersbn/redis sameersbn/postgresql sameersbn/gitlab; 
+do docker pull $i; 
+docker tag $i ci:5000/$i; 
+docker push ci:5000/$i; 
+done
+```
+
+#### 5.4 Jenkins and Gitlab
+Once completed, uncomment the rest of the roles in the infra.yml file and rerun 
+```
+ansible-playbook infra.yml
+```
+#### 5.5 Security Groups
+Make sure you define a security group that allows for the following ports to be
+accessible to the ci environment
+* 22
+* 10080
+* 10022
+* 8080
+
+#### 5.6 Verify 
+
+Verify that the jenkins and gitlab services are running.  Open a web browser to 
+```
+<ip of ci>:10080
+```
+and 
+```
+<ip of ci>:8080
+```
+
+The lab should now be ready to use.  We now need to customize Gitlab and Jenkins.  Follow the
+directions [here](http://benincosa.com/?p=3352) 
+
