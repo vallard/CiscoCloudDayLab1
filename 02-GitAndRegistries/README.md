@@ -220,7 +220,7 @@ git checkout twig
 ```
 Add remove the ```foo.txt``` file and then commit the changes:
 ```
-git 'rm *.txt'
+git rm '*.txt'
 git commit -am "Removed the text file"
 ```
 Now let's go back to the master branch:
