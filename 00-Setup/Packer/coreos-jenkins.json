@@ -16,6 +16,7 @@
     "inline": [
       "sleep 30",
       "mkdir /home/core/java",
+      "mkdir /home/core/jenkins",
       "cd /home/core/java",
       "wget -O java.tar.gz http://javadl.sun.com/webapps/download/AutoDL?BundleId=83376",
       "tar xzvf java.tar.gz",
@@ -23,7 +24,7 @@
       "rm /home/core/.bashrc",
       "echo 'export PATH=$PATH:/home/core/java/jre1.7.0_51/bin/' > /home/core/.bashrc",
       "mkdir -p /home/core/.ssh",
-      "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpXereiNOhRt/Z7ZIYSjT68QUsp34lBqt2KnSMMgoj72bCiSaWziTpxM/RW2zZYeEtM8WDRS4idrLZRhTEJljPuTsuYokYx4kz4IZ7c6Ji7yzlriUci9ghror/neSiuPxteYTP2dUOGar+PUs2g6uN1qngw9EKlkwj8bWVHvTtmBqrqsRpWVAWRwgqKnWcbwboybz8mFxz1hBK7nGahtQ9+5/hCW4Pgky8xgdZffNNxzo562oV5ggI/1RewhA8Ve5xFgQSNh9qUk3O5Nj3sv8EkaLo1OG88kD2ieruI0+ayTOkUQBTM5mT1q7plQH62+lsMSOd70p39GUXSyk9G7mD' >/home/core/.ssh/authorized_keys",
+      "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCuE6oUI6wCBp7+B7/w9NV/vWYJq8WvOouHAcF9PcFoJ7cJHPsDxKdb+/L86/H96IX0yZjOvOblCUvpXEa1KJGSU75RkVl2xuyThw/J2YvbYBelMeYInbcK3rKHDC3qihqdodzeLA/6QGiBtELsSgP4YpMBc5DvmVgTxTOE4XPU/UxxR9GtzTsw/1d4xvqPALlypJR1yZmjPHTHfQJ2g3D6bLqZF6wrVSHLK58BW7rXMtqKKGAePKU1GlD5/muRmoO4/bcNQ6Y08SXE2dieitaU93mpTyIdxBv6ej0K1Te+7jTqRPyImFJ3gBvQ1oJhpqlglVrNKVab8VfLPOZittyn' >/home/core/.ssh/authorized_keys",
       "chmod 600 /home/core/.ssh/authorized_keys"
     ]
   }]

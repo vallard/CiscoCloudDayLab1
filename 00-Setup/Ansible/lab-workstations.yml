@@ -23,6 +23,8 @@
         ansible: "lab-machines"  
     with_items: 
       - lab01
+      - lab02
+      - lab03
     register: result
        
   - name: Wait for the post install script to finish

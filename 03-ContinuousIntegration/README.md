@@ -47,7 +47,7 @@ can't push or pull code because you haven't entered any SSH keys.
 
 ### 3.1.2 Setup SSH keys
 
-On the left menu, click on the _Profile Settings_ 
+On the left menu, click __Back to Dashboard__ and then click __Profile Settings__ 
 
 ![Profile Settings](./images/gl05.png)
 
@@ -95,7 +95,7 @@ to a page that has information on how to start up the project.
 
 At this point we are going to take a public repository that already has
 code and copy it into our newly created private repo.  This is done by
-executing the following: 
+executing the following commands back on your lab workstation: 
 
 ```
 git clone https://github.com/vallard/go-webapp.git
@@ -115,11 +115,12 @@ git remote remove origin
 ```
 Then we will add the Gitlab origin and commit the code up:
 ```
-git remote add origin ssh://git@ci:10022/vallard/web.git
+git remote add origin ssh://git@ci:10022/<gitlab user name>/web.git
 git add . 
 git push -u origin master
 ```
-Refreshing your webpage you should see some of the new content. 
+Now go back to the Gitlab page and refresh the page. You should see some of the new content! 
+You just pushed code into Gitlab. 
 
 ![new web application](./images/gl08.png)
 
@@ -198,9 +199,24 @@ To start things off, just to make sure we have a working environment, let's just
 
 Select _Add build step_ and select _Execute shell_ from the list of options.  We're just going to run a simple ```ls -l``` command at the prompt to see if it works.  
 
-![Jenkins Build ls -l](./images/j07.png)
+![Jenkins Build ls -l](./images/gl10.png)
 
 Save your changes below with the blue button. 
+
+
+### 3.2.3 Trigger web hooks
+
+* Back in Gitlab click on your project and project settings. 
+* Click on Webhooks
+* Create a new Webhook. 
+* URL: ```http://ci:8080/project/<yourprojectname> ```
+* disable SSL verification
+
+![Gitlab hook](./images/j07.png)
+
+
+Test the web hook.  It should build in Jenkins!
+
 
 ## 3.3 Test that our CI works. 
 

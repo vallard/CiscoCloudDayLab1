@@ -276,3 +276,61 @@ and
 The lab should now be ready to use.  We now need to customize Gitlab and Jenkins.  Follow the
 directions [here](http://benincosa.com/?p=3352) 
 
+### 6. Gitlab Configuration
+
+Login as ```root``` with password ```5iveL!fe```  
+
+You'll need to create a ```jenkins``` user.  The password of the jenkins user to gitlab should
+be the same as the jenkins password to metapod. 
+
+Log out as ```root``` and login as ```jenkins``` in the web interface. 
+
+Create an SSH keypair for this ```jenkins``` user.  To generate this, go into the ci machine: 
+
+```
+nova ssh -i ~/.ssh/t4.pem core@ci
+docker exec -it jenkins /bin/bash
+ssh-keygen -t rsa
+```
+The keypair will be stored in ```/var/jenkins_home/.ssh/```
+
+Copy the public key and paste it in the jenkins user account: 
+```
+cat /var/jenkins_home/.ssh/
+```
+
+Add this to the jenkins user.  
+
+The last step to do for gitlab while logged in as the Jenkins user is to go to account settings and get the private
+token from the __Account__ side bar.  Mine looks like:  ```VGsUsMEY-Pj93zEKFUmf```.  Copy this as we'll need it for 
+jenkins. 
+
+Now Gitlab is ready. 
+
+### 7. Jenkins configuration
+
+
+#### 7.1 enable security
+
+Make sure passwords are required and allow for anybody to sign up.  
+
+#### 7.2 Install plugins
+
+These plugins will be the ones listed on the [blog](http://benincosa.com/?p=3352)
+* Gitlab
+* OpenStack Cloud Plugin 
+* Docker Build and Publish
+* Slack 
+* SSH
+
+#### 7.3 Configure Jenkins
+
+Follow the direction in section 4 and 5 on the [blog](http://benincosa.com/?p=3352).  For security create 
+a jenkins account and use the keys in the ~/.ssh directory.  You shouldn't have to put any keys in. 
+
+You'll need to create a new image again with the jenkins ssh key using packer.  Edit the packer file and 
+put in the correct ssh key so that jenkins can log into the slaves.  
+
+Make sure you launch a slave and that it can connect to the slave.  
+
+Make sure you create a jenkins User ID so that they can be the one that logs into the slaves. 
