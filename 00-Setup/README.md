@@ -53,6 +53,10 @@ You will need
 
 __As an example: A class of 25 users would need 5 floating IP addresses.__
 
+You'll need at least 3 security groups: 
+* prod: ports 80, 22, 8001-8100
+* cicd: 22, 8080, 10022, 10080
+* default: 22, 80, 2222 (port 2222 is for the lab)
 
 ## 3. Packer
 

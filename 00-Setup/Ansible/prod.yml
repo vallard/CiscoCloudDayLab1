@@ -1,0 +1,52 @@
+- name: Ensure production server is ready!
+  connection: local
+  hosts: localhost
+  vars_files:
+   - vars/metacloud_vars.yml
+  tasks: 
+    # create volume
+    # - name: ensure there is a volume for storing data. 
+    #os_volume: 
+    #  size: 40
+    #  display_name: ci_volume
+    #register: vol
+
+# TODO: tasks for security groups: 8080
+
+ 
+    #- name: "Debug"
+    #debug: var=vol
+    # create server
+  - name: Ensure lab infrastructure is up
+    os_server:
+      name: "{{ item }}"
+      key_name: "{{ keypair }}"
+      flavor: "{{ m1large }}"
+      security_groups: "{{ security_group }}"
+      userdata:  "{{ lookup('file', 'files/coreos-python.sh') }}"
+      image: "{{ coreos_image }}"
+      meta: 
+        ansible: "prod"  
+    with_items: 
+      - prod
+    register: result
+       
+  - name: Wait for the post install script to finish
+    pause: minutes=2
+    when: result|changed
+    # attach volume to host
+    #  - name: Ensure volume is attached to host. 
+    #os_server_volume: 
+    #  state: present
+    #  server: result.results[0].openstack.name
+    #  volume: 
+    # add lab machine to the inventory
+  - name: Add lab machines to the inventory
+    add_host: hostname={{item.openstack.public_v4}} groupname=prod
+    with_items: result.results
+
+- name: Ensure Lab is setup
+  gather_facts: true
+  hosts: prod
+  roles: 
+    - prod

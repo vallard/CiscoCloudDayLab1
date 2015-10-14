@@ -1,0 +1,5 @@
+---
+- name: Ensure Nginx is up
+  docker: 
+    image: "ci:5000/nginx" 
+    ports: "80:80,443:443"
