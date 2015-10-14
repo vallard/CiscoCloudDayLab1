@@ -203,8 +203,18 @@ Select _Add build step_ and select _Execute shell_ from the list of options.  We
 
 Save your changes below with the blue button. 
 
+### 3.2.4 Slack Integration
 
-### 3.2.3 Trigger web hooks
+We'd like our robot to speak to our chat integration.  You don't have to sign up for Slack but we will use slack 
+for this lab.  The reason we use slack instead of Cisco Spark is because Cisco Spark has no integration into Jenkins. 
+
+Under the Slack Notifications, check all the boxes: 
+
+![Jenkins Slack](./images/gl11.png)
+
+If you want to do more with Slack, let the instructor know.  The reason for this step is so we can see all the commits and builds.
+
+### 3.2.5 Trigger web hooks
 
 * Back in Gitlab click on your project and project settings. 
 * Click on Webhooks
@@ -216,6 +226,8 @@ Save your changes below with the blue button.
 
 
 Test the web hook.  It should build in Jenkins!
+
+
 
 
 ## 3.3 Test that our CI works. 
