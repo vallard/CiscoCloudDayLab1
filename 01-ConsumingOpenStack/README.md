@@ -318,7 +318,7 @@ where ```<name>``` is once again the unique name you picked.
 
 If all is successful you should be able to login with out a password: 
 ```
-$ ssh -i chomp.pem ubuntu@chomp
+$ ssh -i chomp.pem <user>@chomp
 Welcome to Ubuntu ....
 
  * Documentation:  https://help.ubuntu.com/
@@ -341,7 +341,7 @@ Welcome to Ubuntu ....
 Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
 applicable law.
 
-ubuntu@chomp:~$ 
+<user>@chomp:~$ 
 ```
 
 This concludes Exercise 1.4.  You have created an instance using the 
@@ -351,8 +351,8 @@ the Horizon dashboard that Metapod provides.
 There are other clients that you can experiment with if you have time
 including the cinder and keystone clients.
 
-_Be sure to log out of the instance you just created so as not to confuse
-which server you are working on for the rest of the sections!_
+__Be sure to log out of the instance you just created so as not to confuse
+which server you are working on for the rest of the sections!__
 
 ## 1.5 Creating your own Python Commands
 
