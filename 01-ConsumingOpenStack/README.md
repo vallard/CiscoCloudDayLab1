@@ -312,7 +312,7 @@ Check on the status to see if the server has been created using the ```nova list
 
 To make sure you did it right, log into the new instance you just created:
 ```
-ssh -i <name>key.pem ubuntu@<name>firstimage
+ssh -i <name>key.pem cloud@<name>firstimage
 ```
 where ```<name>``` is once again the unique name you picked. 
 
