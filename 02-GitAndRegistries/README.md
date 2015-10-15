@@ -427,7 +427,7 @@ they start up.  In the case of the nginx container, it by default will run the
 nginx websever.  Let's rerun our container in daemon mode by running the command: 
 
 ```
-sudo docker run -d -p 8003:80 --name nginx03 nginx
+sudo docker run -d -p 8003:80 --name nginx03 ci:5000/nginx
 ```
 This will start up the container and again you should be able to access it through your
 same web browser URL. 
@@ -472,7 +472,7 @@ On your lab workstation run the command:
 mkdir ~/html/
 cd ~/html
 wget https://raw.githubusercontent.com/vallard/CiscoCloudDayLab1/master/02-GitAndRegistries/html/index.html
-sudo docker run -d -v `pwd`:/usr/share/nginx/html -p 80<user #>:80 --name nginx<user #> nginx
+sudo docker run -d -v `pwd`:/usr/share/nginx/html -p 80<user #>:80 --name nginx<user #> ci:5000/nginx
 ```
 
 The ```-v``` flag will mount a volume, specifically our current working directory, which has our 
@@ -538,7 +538,7 @@ vim Dockerfile
 ```
 Inside this file let's past the following into this file:
 ```
-FROM nginx
+FROM ci:5000/nginx
 MAINTAINER FirstName LastName "youremail@yourdomain.com"
 ADD index.html /usr/share/nginx/html/
 ```
