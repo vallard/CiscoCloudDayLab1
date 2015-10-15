@@ -262,7 +262,7 @@ glance image-list
 You should see lots of images!  Cisco Metapod comes with many already predefined for you.  Most 
 environments will make their own.  
 
-Find the ubuntu image ```ubuntu-14.04-server``` as this is what we'll use.  
+Find the ubuntu image ```ubuntu.12-04.x86-64.20130725``` as this is what we'll use.  
 
 
 ### 1.4.5 Generate a Keypair
@@ -300,7 +300,7 @@ be recovered.  So make sure you save it the first time!  If you lose it, delete 
 Run the following command to create a new instance
 
 ```
-nova boot --flavor m1.large --image ubuntu-14.04-server --key-name <name>key <name>firstimage
+nova boot --flavor m1.large --image ubuntu.12-04.x86-64.20130725 --key-name <name>key <name>firstimage
 ```
 
 Where ```<name>``` is your fun unique name.  
@@ -319,7 +319,7 @@ where ```<name>``` is once again the unique name you picked.
 If all is successful you should be able to login with out a password: 
 ```
 $ ssh -i chomp.pem ubuntu@chomp
-Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-62-generic x86_64)
+Welcome to Ubuntu ....
 
  * Documentation:  https://help.ubuntu.com/
 
