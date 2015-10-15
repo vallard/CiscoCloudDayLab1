@@ -351,10 +351,11 @@ the Horizon dashboard that Metapod provides.
 There are other clients that you can experiment with if you have time
 including the cinder and keystone clients.
 
-__Be sure to log out of the instance you just created so as not to confuse
-which server you are working on for the rest of the sections!__
 
 ## 1.5 Creating your own Python Commands
+
+__Be sure to log out of the instance you just created so as not to confuse
+which server you are working on for the rest of the sections!__
 
 The python client contain libraries that can also be used by our own
 python code that we write.  To illustrate this, we'll show some code 
