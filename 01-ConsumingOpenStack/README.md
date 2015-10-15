@@ -470,6 +470,7 @@ Modify the ```heat-wget.yml``` file.
 * Make sure the image name actually exists on the system.  Use 
 ```glance image-list``` to verify
 * Make sure your keypair is there. 
+* Modify the image name to be an image name that actually exists on the system. 
 
 Save the changes and close the file. 
 
