@@ -5,10 +5,10 @@
     "type": "openstack",
     "ssh_username": "core", 
     "image_name": "coreos-jenkinslave-{{ timestamp }}",
-    "source_image" : "2997fcd0-bc80-4be4-9f80-580e253f7379",
+    "source_image" : "fbe2878e-7b7f-4212-9a7b-5f5935c479bb",
     "use_floating_ip": "true",
-    "floating_ip": "74.201.203.85",
-    "flavor": "712abf46-5cb6-4cab-a2ad-b5415e6190dd"
+    "floating_ip": "72.251.232.116",
+    "flavor": "f6d25cbc-9e9c-4aa9-96c1-064facd35058",
   }
 ],
   "provisioners": [{
