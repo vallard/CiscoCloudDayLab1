@@ -2,6 +2,6 @@
 keypair: t4
 security_group: default
 coreos_image: CoreOS766
-m1large: 712abf46-5cb6-4cab-a2ad-b5415e6190dd
-floating_ip_pool: "nova"
+m1large: 712abf46-5cb6-4cab-a2ad-b5415e6190dd 
+floating_ip_pool: nova
 

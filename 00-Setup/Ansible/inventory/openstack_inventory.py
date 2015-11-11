@@ -45,7 +45,7 @@ OS_METADATA_KEY = {
 	'host_vars': 'ansible_host_vars'
 }
 
-OS_NETWORK_NAME = 'trial4-4003'
+OS_NETWORK_NAME = 'trial4-4006'
 
 def main(args):
 	credentials = getOsCredentialsFromEnvironment()

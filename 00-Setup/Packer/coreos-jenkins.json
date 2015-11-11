@@ -1,14 +1,14 @@
 {
-  "_floating_ip_pool": "demo",
+  "_floating_ip_pool": "nova",
   "_demo1_source_image": "4d723f4e-1cd0-4521-ae77-117a9cd18d24",
   "builders" : [{
     "type": "openstack",
     "ssh_username": "core", 
     "image_name": "coreos-jenkinslave-{{ timestamp }}",
-    "source_image" : "fbe2878e-7b7f-4212-9a7b-5f5935c479bb",
+    "source_image" : "2997fcd0-bc80-4be4-9f80-580e253f7379",
     "use_floating_ip": "true",
-    "floating_ip": "72.251.232.116",
-    "flavor": "f6d25cbc-9e9c-4aa9-96c1-064facd35058",
+    "floating_ip": "74.201.203.80",
+    "flavor": "m1.small"
   }
 ],
   "provisioners": [{
@@ -23,9 +23,12 @@
       "rm java.tar.gz",
       "rm /home/core/.bashrc",
       "echo 'export PATH=$PATH:/home/core/java/jre1.7.0_51/bin/' > /home/core/.bashrc",
-      "mkdir -p /home/core/.ssh",
-      "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCuE6oUI6wCBp7+B7/w9NV/vWYJq8WvOouHAcF9PcFoJ7cJHPsDxKdb+/L86/H96IX0yZjOvOblCUvpXEa1KJGSU75RkVl2xuyThw/J2YvbYBelMeYInbcK3rKHDC3qihqdodzeLA/6QGiBtELsSgP4YpMBc5DvmVgTxTOE4XPU/UxxR9GtzTsw/1d4xvqPALlypJR1yZmjPHTHfQJ2g3D6bLqZF6wrVSHLK58BW7rXMtqKKGAePKU1GlD5/muRmoO4/bcNQ6Y08SXE2dieitaU93mpTyIdxBv6ej0K1Te+7jTqRPyImFJ3gBvQ1oJhpqlglVrNKVab8VfLPOZittyn' >/home/core/.ssh/authorized_keys",
-      "chmod 600 /home/core/.ssh/authorized_keys"
+      "mkdir -p /home/core/.ssh/authorized_keys.d",
+      "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxlNIgTVpCuNSomB/vPI3Hka0WJpioIuSNwGRYU/OeE3uN61OF+9SKQTjuLeeldCs/RLr6cV1dHa5V7OnDBhdPEiRa05LlynVfYLsRzJ3b9YFypCMUs3QxhcrEnzBJ8Iubgf9IAHn1/IpCulgw+82Lu2kO+wB0Bz0zKJaqL9vI3HTB8dQ4v46DoEavGgapdC852ejT9seFv08+YTsdEI2ISQl99VEkilVE+ExuY3vYp3Okp2SARG7PzehKVT8imAcPcJDEeiyrlbmdjuLTGiwJGsOpOwKZMVpPgxkWRkOiUlWqNs4zqHNT06EDNLDB43o8JVo093nwL/qru9H8Cy6N' > /home/core/.ssh/authorized_keys.d/jenkins",
+      "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxlNIgTVpCuNSomB/vPI3Hka0WJpioIuSNwGRYU/OeE3uN61OF+9SKQTjuLeeldCs/RLr6cV1dHa5V7OnDBhdPEiRa05LlynVfYLsRzJ3b9YFypCMUs3QxhcrEnzBJ8Iubgf9IAHn1/IpCulgw+82Lu2kO+wB0Bz0zKJaqL9vI3HTB8dQ4v46DoEavGgapdC852ejT9seFv08+YTsdEI2ISQl99VEkilVE+ExuY3vYp3Okp2SARG7PzehKVT8imAcPcJDEeiyrlbmdjuLTGiwJGsOpOwKZMVpPgxkWRkOiUlWqNs4zqHNT06EDNLDB43o8JVo093nwL/qru9H8Cy6N' > /home/core/.ssh/authorized_keys",
+      "chmod 600 /home/core/.ssh/authorized_keys",
+      "chmod 600 /home/core/.ssh/authorized_keys.d/jenkins",
+      "chmod 700 /home/core/.ssh/authorized_keys.d"
     ]
   }]
 }

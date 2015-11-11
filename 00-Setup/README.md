@@ -145,7 +145,7 @@ ansible_ssh_private_key_file = ~/.ssh/t4.pem
 ### 4.4 Run Ansible Playbook
 
 ```
-ansible-playbook lab-machines.yml
+ansible-playbook lab-workstations.yml
 ```
 This script can take a while as it installs an instance then downloads a container and runs it. 
 
