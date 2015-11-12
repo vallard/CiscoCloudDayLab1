@@ -13,7 +13,7 @@ some tests, and then push the new code into production.
 
 ## 3.1 Configure Gitlab
 
-Create a new account on Gitlab.  The instructor will give you the URL
+Create a new account on Gitlab.  _Please do not go to gitlab.com (especially Matt D)_ The instructor will give you the URL
 of where to sign in to create this account.  The account name can be
 anything you like (your name, CEC, etc). 
 
