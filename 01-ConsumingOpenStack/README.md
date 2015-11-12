@@ -231,7 +231,7 @@ This will show the different flavors availabe in the system.  In Metapod the adm
 the ability to create different flavors.  For example, a project may require a flavor that uses
 all the resources of a physical machine for using Apache Spark with HDFS.  
 
-Take note of the m1.large ID.  This may be 3 or something else.  We can get more information on this
+Take note of the m1.small ID.  This may be 3 or something else.  We can get more information on this
 
 ```
 nova flavor-show 3
@@ -239,7 +239,7 @@ nova flavor-show 3
 
 alternatively you can run: 
 ```
-nova flavor-show m1.large
+nova flavor-show m1.small
 ```
 
 and get the same results. 
@@ -300,7 +300,7 @@ be recovered.  So make sure you save it the first time!  If you lose it, delete 
 Run the following command to create a new instance
 
 ```
-nova boot --flavor m1.large --image ubuntu.12-04.x86-64.20130725 --key-name <name>key <name>firstimage
+nova boot --flavor m1.small --image ubuntu.12-04.x86-64.20130725 --key-name <name>key <name>firstimage
 ```
 
 Where ```<name>``` is your fun unique name.  
