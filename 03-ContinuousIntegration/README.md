@@ -13,7 +13,7 @@ some tests, and then push the new code into production.
 
 ## 3.1 Configure Gitlab
 
-Create a new account on Gitlab.  _Please do not go to gitlab.com (especially Matt D)_ The instructor will give you the URL
+Create a new account on Gitlab.  __Please do not go to gitlab.com__ The instructor will give you the URL
 of where to sign in to create this account.  The account name can be
 anything you like (your name, CEC, etc). 
 
@@ -199,7 +199,7 @@ To start things off, just to make sure we have a working environment, let's just
 
 Select _Add build step_ and select _Execute shell_ from the list of options.  We're just going to run a simple ```ls -l``` command at the prompt to see if it works.  
 
-![Jenkins Build ls -l](./images/gl10.png)
+![Gitlab hook](./images/j07.png)
 
 Save your changes below with the blue button. 
 
@@ -222,8 +222,7 @@ If you want to do more with Slack, let the instructor know.  The reason for this
 * URL: ```http://ci:8080/project/<yourprojectname> ```
 * disable SSL verification
 
-![Gitlab hook](./images/j07.png)
-
+![Jenkins Build ls -l](./images/gl10.png)
 
 Test the web hook.  It should build in Jenkins!
 
