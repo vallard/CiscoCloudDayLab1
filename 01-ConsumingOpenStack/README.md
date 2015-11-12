@@ -509,3 +509,20 @@ More information on Heat Stacks is available from the
 Terraform is another tool like Heat that declaratively creates infrastructure as code. 
 Unlike OpenStack Heat, it works across different environments such as GCE, AWS, and 
 several more.  
+
+```
+cd ~/COPC-API-Examples/05-Terraform/
+```
+Modify the ```example.tf``` file.
+
+* Change the username to cloudweek
+* Update name, image_id, flavor_id and keypair
+
+Test with the command ```terraform plan```
+
+Instanciate the server with the command ```terraform apply```
+
+Verify with the command ```nova list```
+
+
+
