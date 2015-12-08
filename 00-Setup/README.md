@@ -300,7 +300,7 @@ The keypair will be stored in ```/var/jenkins_home/.ssh/```
 
 Copy the public key and paste it in the jenkins user account: 
 ```
-cat /var/jenkins_home/.ssh/
+cat /var/jenkins_home/.ssh/id_rsa.pub
 ```
 
 Add this to the jenkins user.  
@@ -316,7 +316,16 @@ Now Gitlab is ready.
 
 #### 7.1 enable security
 
+In Configure Global Security:
+* Enable Security
+* Jenkins' own user database
+  * Allow users to sign up (yes or no depending on what you're doing)
+* Anyone can do anything.
+* Prevent Cross Site Request Forgery exploits
+
 Make sure passwords are required and allow for anybody to sign up.  
+
+You can then create a user account. 
 
 #### 7.2 Install plugins
 

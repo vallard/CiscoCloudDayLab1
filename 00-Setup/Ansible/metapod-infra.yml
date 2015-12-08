@@ -1,4 +1,4 @@
-- name: Ensure production server is ready!
+- name: Ensure lab infrastructure is ready!
   connection: local
   hosts: localhost
   vars_files:
@@ -25,24 +25,34 @@
       security_groups: "{{ security_group }}"
       userdata:  "{{ lookup('file', 'files/coreos-python.sh') }}"
       image: "{{ coreos_image }}"
-      public_ip: no
+      auto_ip: no
       meta: 
-        ansible: "prod"  
+        ansible: "infra"  
+      nics: 
+        - net-name: "cisco-1"
     with_items: 
-      - web01
-      - web02
-      - web03
+      - ci
     register: result
        
   - name: Wait for the post install script to finish
     pause: minutes=2
     when: result|changed
+    # attach volume to host
+    #  - name: Ensure volume is attached to host. 
+    #os_server_volume: 
+    #  state: present
+    #  server: result.results[0].openstack.name
+    #  volume: 
+    # add lab machine to the inventory
   - name: Add lab machines to the inventory
-    add_host: hostname={{item.openstack.public_v4}} groupname=prod
+    add_host: hostname={{item.openstack.public_v4}} groupname=infra
     with_items: result.results
 
 - name: Ensure Lab is setup
   gather_facts: true
-  hosts: prod
+  hosts: infra
   roles: 
-    - web
+    - filesystem
+#    - registry
+#    - gitlab
+#    - jenkins

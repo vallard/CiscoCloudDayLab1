@@ -1,7 +1,5 @@
 #!/bin/bash
-## Set up python
-#HTTP_PROXY=http://esl.cisco.com:80
-#HTTPS_PROXY=http://esl.cisco.com:80
+## Part 1:  Set up python
 PYPY_VERSION=2.4.0
 HOME=/home/core
 mkdir -p $HOME
@@ -23,19 +21,7 @@ EOF
 chmod +x $HOME/bin/python
 $HOME/bin/python --version
 
-wget http://benincosa.com/get-pip.py
-sudo $HOME/bin/python ~/get-pip.py
-
-
-echo '#!/bin/bash
-LD_LIBRARY_PATH=/home/core/pypy/lib:$LD_LIBRARY_PATH /home/core/pypy/bin/$(basename $0) $@'>$HOME/bin/pip
-
-chmod 755 $HOME/bin/pip
-
-# use 1.1.0 for the docker client to equal the same version of the server: 1.18 and not get bug. 
-sudo $HOME/bin/pip install -I docker-py==1.1.0
-
-# setup insecure registry
+## part 2: insecure docker registry
 mkdir -p /etc/systemd/system/
 cat > /etc/systemd/system/docker.service <<EOF
 [Unit]
@@ -59,4 +45,4 @@ EOF
 systemctl daemon-reload
 systemctl restart docker
 
-
+docker run -p 80:3000 -d --name camels ci:5000/vallard/camels:latest

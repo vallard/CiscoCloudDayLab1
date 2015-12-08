@@ -1,0 +1,10 @@
+---
+
+- name: Ensure nginx files are copied. 
+  copy: src={{item.src}} dest={{item.dest}}
+  with_items:
+    - { src: ../files/default.conf, dest: /vol/nginx/ }
+  sudo: true
+
+- name: Ensure NGINX proxy is up
+  docker: image="nginx" name=proxy volumes="/vol/nginx:/etc/nginx/conf.d" ports=80:80,443:443

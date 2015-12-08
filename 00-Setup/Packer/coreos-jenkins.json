@@ -1,14 +1,15 @@
 {
   "_floating_ip_pool": "nova",
   "_demo1_source_image": "4d723f4e-1cd0-4521-ae77-117a9cd18d24",
+  "_networks" : [ "" ],
   "builders" : [{
     "type": "openstack",
     "ssh_username": "core", 
     "image_name": "coreos-jenkinslave-{{ timestamp }}",
-    "source_image" : "2997fcd0-bc80-4be4-9f80-580e253f7379",
-    "use_floating_ip": "true",
-    "floating_ip": "74.201.203.80",
-    "flavor": "m1.small"
+    "source_image" : "6621fb6f-e937-4489-8a59-325d103f37a4",
+    "flavor": "m1.small",
+    "floating_ip": "208.90.61.51",
+    "security_groups" : ["default"]
   }
 ],
   "provisioners": [{
@@ -24,8 +25,8 @@
       "rm /home/core/.bashrc",
       "echo 'export PATH=$PATH:/home/core/java/jre1.7.0_51/bin/' > /home/core/.bashrc",
       "mkdir -p /home/core/.ssh/authorized_keys.d",
-      "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxlNIgTVpCuNSomB/vPI3Hka0WJpioIuSNwGRYU/OeE3uN61OF+9SKQTjuLeeldCs/RLr6cV1dHa5V7OnDBhdPEiRa05LlynVfYLsRzJ3b9YFypCMUs3QxhcrEnzBJ8Iubgf9IAHn1/IpCulgw+82Lu2kO+wB0Bz0zKJaqL9vI3HTB8dQ4v46DoEavGgapdC852ejT9seFv08+YTsdEI2ISQl99VEkilVE+ExuY3vYp3Okp2SARG7PzehKVT8imAcPcJDEeiyrlbmdjuLTGiwJGsOpOwKZMVpPgxkWRkOiUlWqNs4zqHNT06EDNLDB43o8JVo093nwL/qru9H8Cy6N' > /home/core/.ssh/authorized_keys.d/jenkins",
-      "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxlNIgTVpCuNSomB/vPI3Hka0WJpioIuSNwGRYU/OeE3uN61OF+9SKQTjuLeeldCs/RLr6cV1dHa5V7OnDBhdPEiRa05LlynVfYLsRzJ3b9YFypCMUs3QxhcrEnzBJ8Iubgf9IAHn1/IpCulgw+82Lu2kO+wB0Bz0zKJaqL9vI3HTB8dQ4v46DoEavGgapdC852ejT9seFv08+YTsdEI2ISQl99VEkilVE+ExuY3vYp3Okp2SARG7PzehKVT8imAcPcJDEeiyrlbmdjuLTGiwJGsOpOwKZMVpPgxkWRkOiUlWqNs4zqHNT06EDNLDB43o8JVo093nwL/qru9H8Cy6N' > /home/core/.ssh/authorized_keys",
+      "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClA3wJlVefBxgGnkfylfDNXHx91Wx/5pe2T4uJBDbTtXM5afDO7RcMeq1i0bqQzLerZ94Mt0JK8hGmA1JQv6WLySIE+aUwrMAmzlWGYwGRGHtVV6oC4iZ0xbF1Vvyw8iKKBX4VsZVvFafWUkz53WRMT7tskiAc7ApfctNxcTNNZqKZZdxm9amZurLIYfkJO3hRlCN6P/bxH4iC/6zLPzJuAhRo28mhMmpZIQea5EtzgYisPQwhXwqOh1rJVXKjBv8ck375fc1ueJ1SgiT2fK4bBnGK/gKi9uULRG7dAuGpI9Au4ehnK2EShs65r/oZKegkAXeDiKbJPqRl0x7Bi8ip' > /home/core/.ssh/authorized_keys.d/jenkins",
+      "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClA3wJlVefBxgGnkfylfDNXHx91Wx/5pe2T4uJBDbTtXM5afDO7RcMeq1i0bqQzLerZ94Mt0JK8hGmA1JQv6WLySIE+aUwrMAmzlWGYwGRGHtVV6oC4iZ0xbF1Vvyw8iKKBX4VsZVvFafWUkz53WRMT7tskiAc7ApfctNxcTNNZqKZZdxm9amZurLIYfkJO3hRlCN6P/bxH4iC/6zLPzJuAhRo28mhMmpZIQea5EtzgYisPQwhXwqOh1rJVXKjBv8ck375fc1ueJ1SgiT2fK4bBnGK/gKi9uULRG7dAuGpI9Au4ehnK2EShs65r/oZKegkAXeDiKbJPqRl0x7Bi8ip' > /home/core/.ssh/authorized_keys",
       "chmod 600 /home/core/.ssh/authorized_keys",
       "chmod 600 /home/core/.ssh/authorized_keys.d/jenkins",
       "chmod 700 /home/core/.ssh/authorized_keys.d"

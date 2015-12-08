@@ -1,7 +1,8 @@
 ---
-keypair: t4
-security_group: default
-coreos_image: CoreOS766
-m1large: 712abf46-5cb6-4cab-a2ad-b5415e6190dd 
+#keypair: cloudvt
+keypair: t5
+security_group: ci
+coreos_image: CoreOS-766.4.0 
+m1large: df140c7d-abdd-47ed-9246-698a21fd4121
 floating_ip_pool: nova
 

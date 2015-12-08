@@ -1,7 +1,5 @@
 #!/bin/bash
 ## Set up python
-#HTTP_PROXY=http://esl.cisco.com:80
-#HTTPS_PROXY=http://esl.cisco.com:80
 PYPY_VERSION=2.4.0
 HOME=/home/core
 mkdir -p $HOME

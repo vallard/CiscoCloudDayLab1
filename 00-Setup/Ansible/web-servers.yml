@@ -1,0 +1,27 @@
+- name: Ensure Web Servers are Up
+  connection: local
+  hosts: local
+  vars_files:
+   - vars/metacloud_vars.yml
+
+  tasks: 
+  - name: Ensure webservers are up
+    nova_compute:
+      state: present
+      auth_url: "{{ lookup('env', 'OS_AUTH_URL') }}"
+      login_username: "{{ lookup('env', 'OS_USERNAME') }}"
+      login_password: "{{ lookup('env', 'OS_PASSWORD') }}"
+      login_tenant_name: "{{ lookup('env', 'OS_TENANT_NAME') }}"
+      name: "{{ item }}"
+      image_name: "{{ coreos_image_name }}"
+      key_name: "{{ keypair }}"
+      # 3 is m1.large
+      flavor_id: 3
+      meta: 
+        group: web-servers
+      security_groups: "{{ security_group }}"
+      user_data:  "{{ lookup('file', 'files/cloud-config.sh') }}"
+    with_items:
+      - web01
+      - web02
+      - web03
