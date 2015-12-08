@@ -15,3 +15,8 @@ docker-machine ls
 echo "docker-machine env loco"
 read -n1 -r
 docker-machine env loco
+
+read -n1 -r
+echo "docker images"
+echo "docker ps"
+echo "docker run -d --name nginx -p 80:80 nginx"
