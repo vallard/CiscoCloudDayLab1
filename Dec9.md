@@ -39,8 +39,14 @@
 
 ## Users 81 - 100
 
-| Lab Machine 5 (72.251.232.120) | MetaPod User ID |
+| Lab Machine 6 (72.251.232.110) | MetaPod User ID |
 |--------------------------------|-----------------|
 | user01 - user10                | metaclient11    |
 | user11 - user20                | metaclient12    |
 
+## Users 101 - 120
+
+| Lab Machine 7 (72.251.232.112) | MetaPod User ID |
+|--------------------------------|-----------------|
+| user01 - user10                | metaclient11    |
+| user11 - user20                | metaclient12    |
