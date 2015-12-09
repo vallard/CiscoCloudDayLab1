@@ -100,6 +100,7 @@ vi ~/.profile
 [There's a nice 5 minute introduction](http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html)
 to vi that might help if you wish to learn that.  (recommended if you are not!)
 
+__Note:  You should put the Metapod password in there and not $OS_PASSWORD in the environment variables__
 Log out and log back in for your environment variables to become active.  
 Alternatively, run the command: 
 
@@ -480,7 +481,7 @@ Save the changes and close the file.
 
 You can now run the Heat stack by running: 
 ```
-$ heat stack-create mytest<user id> --template-file ./heat-wget.yml
+heat stack-create mytest<user id> --template-file ./heat-wget.yml
 ```
 The output will look similar to: 
 ```
