@@ -46,7 +46,8 @@ OS_METADATA_KEY = {
 }
 
 #OS_NETWORK_NAME = 'cisco-1'
-OS_NETWORK_NAME = 'trial5-221'
+OS_NETWORK_NAME = 'trial3-3008'
+#OS_NETWORK_NAME = 'trial5-221'
 
 def main(args):
 	credentials = getOsCredentialsFromEnvironment()

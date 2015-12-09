@@ -5,13 +5,13 @@ localhost ansible_python_interpreter="/usr/local/bin/python"
 
 [infra:vars]
 ansible_ssh_user = core
-ansible_ssh_private_key_file = ~/.ssh/t5.pem
+ansible_ssh_private_key_file = ~/.ssh/t3.pem
 ansible_python_interpreter=/home/core/bin/python
 
 [prod]
 [prod:vars]
 ansible_ssh_user = core
-ansible_ssh_private_key_file = ~/.ssh/t5.pem
+ansible_ssh_private_key_file = ~/.ssh/t3.pem
 ansible_python_interpreter=/home/core/bin/python
 
 
@@ -19,6 +19,6 @@ ansible_python_interpreter=/home/core/bin/python
 
 [lab-machines:vars]
 ansible_ssh_user = core
-ansible_ssh_private_key_file = ~/.ssh/t5.pem
+ansible_ssh_private_key_file = ~/.ssh/t3.pem
 ansible_python_interpreter=/home/core/bin/python
 
