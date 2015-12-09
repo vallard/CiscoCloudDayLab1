@@ -1,0 +1,23 @@
+- name: launch one nova instance
+  connection: local
+  hosts: local
+  vars_files:
+   - vars/metacloud_vars.yml
+
+  tasks: 
+ 
+  - name: Ensure New server is up. 
+    nova_compute:
+      state: present
+      auth_url: "{{ lookup('env', 'OS_AUTH_URL') }}"
+      login_username: "{{ lookup('env', 'OS_USERNAME') }}"
+      login_password: "{{ lookup('env', 'OS_PASSWORD') }}"
+      login_tenant_name: "{{ lookup('env', 'OS_TENANT_NAME') }}"
+      name: metapod-demo
+      image_name: "{{ coreos_image_name }}"
+      key_name: "{{ keypair }}"
+      flavor_id: "{{ flavor }}"
+      security_groups: "{{ security_group }}"
+#      floating_ip_pools:
+#      - "{{ floating_ip_pool }}"
+    register: instance

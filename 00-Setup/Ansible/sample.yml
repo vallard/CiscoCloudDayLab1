@@ -1,0 +1,18 @@
+- name: Ensure lab infrastructure is ready!
+  connection: local
+  hosts: localhost
+  vars_files:
+   - vars/metacloud_vars.yml
+  tasks: 
+  - name: Show you a wicked sample
+    os_server:
+      name: "{{ item }}"
+      key_name: "{{ keypair }}"
+      flavor: "{{ m1large }}"
+      security_groups: "{{ security_group }}"
+      userdata:  "{{ lookup('file', 'files/coreos-python.sh') }}"
+      image: "{{ coreos_image }}"
+      auto_floating_ip: no
+    with_items: 
+      - sample01
+      - sample02
