@@ -1,15 +1,18 @@
 {
   "_floating_ip_pool": "nova",
   "_demo1_source_image": "4d723f4e-1cd0-4521-ae77-117a9cd18d24",
-  "_networks" : [ "" ],
+  "_floating_ip": "208.90.61.51",
   "builders" : [{
+    "use_floating_ip" : false,
     "type": "openstack",
     "ssh_username": "core", 
     "image_name": "coreos-jenkinslave-{{ timestamp }}",
-    "source_image" : "6621fb6f-e937-4489-8a59-325d103f37a4",
+    "source_image" : "48342e8e-e24e-4732-8a56-66d6d29e1931",
     "flavor": "m1.small",
-    "floating_ip": "208.90.61.51",
-    "security_groups" : ["default"]
+    "networks" : [ "93c562e8-6fca-47fb-bf90-9e7317004cd4" ],
+    "security_groups" : ["default"],
+    "ssh_keypair_name" : "packerKey",
+    "ssh_private_key_file" : "packerKey"
   }
 ],
   "provisioners": [{
