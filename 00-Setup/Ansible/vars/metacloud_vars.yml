@@ -1,14 +1,21 @@
 ---
 #keypair: cloudvt
-#keypair: t5
-keypair: t3
-#security_group: ci
-security_group: cicd
+keypair: t5
+#keypair: t3
+security_group: ci
+#security_group: cicd
 #coreos_image: CoreOS-766.4.0 
-coreos_image: CoreOS832
+#coreos_image: CoreOS832
+coreos_image: CoreOS
 #m1large: df140c7d-abdd-47ed-9246-698a21fd4121
 #trial3
 #m1large: 49e9ee33-5cd8-4894-a8da-7954907d9101
-m1large: a77af7d5-9ed7-4b19-a631-2e95edf88a0b
+#m1large: a77af7d5-9ed7-4b19-a631-2e95edf88a0b
+# trial 5
+m1large: e2f19640-e1f7-4165-b4a8-6bb4213520ee
+
+# trial5:
+net: trial5-shared
+
 floating_ip_pool: nova
 

@@ -17,8 +17,12 @@ chmod 600 /home/core/.ssh/authorized_keys.d/jenkins
 chmod 700 /home/core/.ssh/authorized_keys.d
 
 # setup insecure registry
+sudo systemctl daemon-stop
+sudo systemctl stop docker
 sudo mkdir -p /etc/systemd/system/
-sudo cat > /etc/systemd/system/docker.service <<EOF
+sudo touch /etc/systemd/system/docker.service
+sudo ls -l /etc/systemd/system/docker.service
+echo '
 [Unit]
 Description=Docker Application Container Engine
 Documentation=http://docs.docker.com
@@ -35,7 +39,9 @@ ExecStart=/usr/lib/coreos/dockerd --daemon --host=fd:// --insecure-registry ci:5
 
 [Install]
 WantedBy=multi-user.target
-EOF
+' >/home/core/docker.sh
 
-sudo systemctl daemon-reload
-sudo systemctl restart docker
+cat /home/core/docker.sh
+sudo mv /home/core/docker.sh /etc/systemd/system/docker.service
+sudo chown root:root /etc/systemd/system/docker.service
+#sudo systemctl restart docker

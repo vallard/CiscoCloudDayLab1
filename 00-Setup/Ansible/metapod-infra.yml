@@ -29,7 +29,7 @@
       meta: 
         ansible: "infra"  
       nics: 
-        - net-name: "cisco-1"
+        - net-name: "{{ net }}"
     with_items: 
       - ci
     register: result
@@ -53,6 +53,7 @@
   hosts: infra
   roles: 
     - filesystem
-#    - registry
-#    - gitlab
-#    - jenkins
+    - registry
+    - gitlab
+    - jenkins
+

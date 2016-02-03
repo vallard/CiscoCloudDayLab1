@@ -1,9 +1,13 @@
 {
   "_floating_ip_pool": "nova",
-  "_demo1_source_image": "4d723f4e-1cd0-4521-ae77-117a9cd18d24",
-  "_floating_ip": "208.90.61.51",
   "builders" : [{
+    "tenant_name" : "CloudVT",
+    "identity_endpoint" : "http://10.93.234.95:5000/v2.0",
+    "username" : "vallard",
+    "password" : "Cisco.123",
+    "tenant_id" : "2663cf49670f432fabf5b6e80d59d4f0",
     "use_floating_ip" : false,
+    "name" : "Lucky",
     "type": "openstack",
     "ssh_username": "core", 
     "image_name": "coreos-jenkinslave-{{ timestamp }}",
@@ -13,6 +17,15 @@
     "security_groups" : ["default"],
     "ssh_keypair_name" : "packerKey",
     "ssh_private_key_file" : "packerKey"
+  },{
+    "type": "openstack",
+    "name" : "Trial5", 
+    "ssh_username": "core", 
+    "source_image" : "fe596c54-49b7-40c3-bf47-7545534517ad",
+    "flavor": "m1.medium",
+    "image_name": "coreos-jenkinslave-{{ timestamp }}",
+    "floating_ip": "208.90.61.52",
+    "networks" : [ "0bc262db-f025-47c2-9ef9-3373c49c35b9" ] 
   }
 ],
   "provisioners": [{
