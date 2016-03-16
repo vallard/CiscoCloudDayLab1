@@ -1,10 +1,15 @@
 upstream jenkins {
-    server {{ ansible_eth0["ipv4"]["address"] }}:8080;
+    server 10.100.0.38:8080;
 }
 
 upstream gitlab {
-    server {{ ansible_eth0["ipv4"]["address"] }}:10080;
+    server 10.100.0.38:10080;
 }
+
+upstream gospark {
+    server 10.100.0.38:8089;
+}
+
 
 server {
     listen       80;
@@ -19,5 +24,13 @@ server {
     server_name  gitlab.metapals.com;
     location / {
         proxy_pass http://gitlab;
+    }
+}
+
+server {
+    listen       80;
+    server_name  gospark.metapals.com;
+    location / {
+        proxy_pass http://gospark;
     }
 }

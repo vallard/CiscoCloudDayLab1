@@ -56,3 +56,4 @@
     - registry
     - gitlab
     - jenkins
+    - nginx
