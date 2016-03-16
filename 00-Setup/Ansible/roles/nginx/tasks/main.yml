@@ -1,0 +1,7 @@
+---
+- name: Copy template files onto server
+  template: src=../templates/default.js dest=/vol/nginx/default.conf
+  sudo: yes
+
+- name: Ensure nginx reverse proxy is up
+  docker: image="ci:5000/nginx" volumes=/vol/nginx:/etc/nginx/conf.d name=nginx ports=80:80
