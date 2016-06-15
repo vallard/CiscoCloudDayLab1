@@ -41,7 +41,8 @@ MountFlags=slave
 LimitNOFILE=1048576
 LimitNPROC=1048576
 #ExecStart=/usr/lib/coreos/dockerd --daemon --host=fd:// --insecure-registry 208.90.61.59:5000 $DOCKER_OPTS $DOCKER_OPT_BIP $DOCKER_OPT_MTU $DOCKER_OPT_IPMASQ
-ExecStart=/usr/lib/coreos/dockerd --daemon --host=fd:// --insecure-registry 208.90.61.59:5000 --insecure-registry 10.100.0.38:5000 --insecure-registry ci:5000 
+#ExecStart=/usr/lib/coreos/dockerd --daemon --host=fd:// --insecure-registry 208.90.61.59:5000 --insecure-registry 10.100.0.38:5000 --insecure-registry ci:5000 
+ExecStart=/usr/lib/coreos/dockerd daemon --host=fd:// $DOCKER_OPTS $DOCKER_CGROUPS $DOCKER_OPT_BIP $DOCKER_OPT_MTU $DOCKER_OPT_IPMASQ --insecure-registry 208.90.61.59:5000
 
 [Install]
 WantedBy=multi-user.target

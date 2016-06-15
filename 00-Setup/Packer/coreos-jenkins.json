@@ -24,8 +24,17 @@
     "source_image" : "fe596c54-49b7-40c3-bf47-7545534517ad",
     "flavor": "m1.medium",
     "image_name": "coreos-jenkinslave-{{ timestamp }}",
-    "floating_ip": "208.90.61.52",
+    "floating_ip": "208.90.61.60",
     "networks" : [ "0bc262db-f025-47c2-9ef9-3373c49c35b9" ] 
+  },{
+    "type": "openstack",
+    "name": "Trial14",
+    "ssh_username": "core", 
+    "source_image" : "72e17f3f-d2b6-4519-929b-727141eebdae",
+    "flavor": "m1.medium",
+    "image_name": "coreos-jenkins-{{ timestamp }}",
+    "floating_ip": "184.94.252.243",
+    "networks" : ["5a24ecbf-878c-4081-9a7b-d50484ccfad3"]
   }
 ],
   "provisioners": [{
